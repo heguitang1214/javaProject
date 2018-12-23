@@ -12,7 +12,7 @@
     <url>http://maven.apache.org</url>
 
     <modules>
-        <module>backend-parent</module>
+        <module>parent</module>
         <module>common</module>
         <module>javaBasics</module>
         <module>rabbitmqDemo</module>
