@@ -12,14 +12,14 @@
     <url>http://maven.apache.org</url>
 
     <modules>
+        <module>backend-parent</module>
+        <module>common</module>
         <module>javaBasics</module>
-        <!--<module>rabbitmqDemo</module>-->
-        <!--<module>ticket_api</module>-->
-        <!--<module>ticket_client</module>-->
-        <!--<module>transaction-xa</module>-->
-        <!--<module>tx_core</module>-->
-        <!--<module>tx_order</module>-->
-        <!--<module>tx_product</module>-->
+        <module>rabbitmqDemo</module>
+        <module>ticket_api</module>
+        <module>ticket_client</module>
+        <module>transaction-xa</module>
+        <module>tx_demo</module>
     </modules>
 
 
