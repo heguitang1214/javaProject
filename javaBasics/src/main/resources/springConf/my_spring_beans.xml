@@ -1,0 +1,7 @@
+<beans>
+	<bean id="u" class="springDemo.ioc.dao.impl.UserDAOImpl" />
+	<bean id="userService" class="springDemo.ioc.service.UserService" >
+		<property name="userDAO" bean="u"/>
+	</bean>
+	
+</beans>
