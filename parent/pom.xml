@@ -6,9 +6,69 @@
     <groupId>com.zero</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>backend-parent</name>
+    <name>parent</name>
     <url>http://maven.apache.org</url>
     <packaging>jar</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <!-- 项目属性 -->
+    <properties>
+        <!--指明使用utf-8编码-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--指明使用JDK8-->
+        <java.version>1.8</java.version>
+        <!-- main version setting -->
+        <!--<google.zxing.version>3.3.0</google.zxing.version>-->
+    </properties>
+
+    <dependencies>
+        <!--springBoot使用的jar包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--springBoot热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!-- 取消传递依赖 -->
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <!--插件-->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
