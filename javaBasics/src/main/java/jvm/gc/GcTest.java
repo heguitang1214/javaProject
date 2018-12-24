@@ -165,10 +165,18 @@ public class GcTest {
 
     /**
      * -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC
+     * 新生代默认是parNew
      */
     private static void concMarkSweepGC() {
         System.out.println("使用垃圾回收器[ParallelOldGC]......");
-        //
+//        Heap
+//        par new generation   total 39296K, used 5596K [0x0000000081800000, 0x00000000842a0000, 0x00000000964c0000)
+//        eden space 34944K,  16% used [0x0000000081800000, 0x0000000081d77248, 0x0000000083a20000)
+//        from space 4352K,   0% used [0x0000000083a20000, 0x0000000083a20000, 0x0000000083e60000)
+//        to   space 4352K,   0% used [0x0000000083e60000, 0x0000000083e60000, 0x00000000842a0000)
+//        concurrent mark-sweep generation total 87424K, used 0K [0x00000000964c0000, 0x000000009ba20000, 0x0000000100000000)
+//        Metaspace       used 3253K, capacity 4500K, committed 4864K, reserved 1056768K
+//        class space    used 351K, capacity 388K, committed 512K, reserved 1048576K
     }
 
     /**
