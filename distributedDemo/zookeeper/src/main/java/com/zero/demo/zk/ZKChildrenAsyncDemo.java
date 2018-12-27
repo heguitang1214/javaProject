@@ -15,13 +15,6 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 
-class ChildrenCallback implements AsyncCallback.Children2Callback {
-	@Override
-	public void processResult(int rc, String path, Object ctx, List<String> children, Stat stat) {
-		System.out.println(
-				"Child: " + rc + ", path: " + path + ", ctx: " + ctx + ", children: " + children + ", stat: " + stat);
-	}
-}
 
 public class ZKChildrenAsyncDemo implements Watcher {
 	private static final CountDownLatch cdl = new CountDownLatch(1);
@@ -49,7 +42,18 @@ public class ZKChildrenAsyncDemo implements Watcher {
 				try {
 					System.out.println("Child: " + zk.getChildren(event.getPath(), true));
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 	}
+
+
+	static class ChildrenCallback implements AsyncCallback.Children2Callback {
+		@Override
+		public void processResult(int rc, String path, Object ctx, List<String> children, Stat stat) {
+			System.out.println(
+					"Child: " + rc + ", path: " + path + ", ctx: " + ctx + ", children: " + children + ", stat: " + stat);
+		}
+	}
+
 }

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PaymentController {
-	@Autowired
-	private PaymentService service;
+    @Autowired
+    private PaymentService service;
 
-	@ResponseBody
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test() {
-		Payment p = service.getById();
-		return "OrderId: " + p.getOrderId() + ", Price: " + p.getPayPrice();
-	}
+    @ResponseBody
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
+        Payment p = service.getById();
+        return "OrderId: " + p.getOrderId() + ", Price: " + p.getPayPrice();
+    }
 }

@@ -42,6 +42,7 @@ public class ZKDataDemo implements Watcher {
 					System.out.println(new String(zk.getData(event.getPath(), true, stat)));
 					System.out.println(stat.getCzxid() + ", " + stat.getMzxid() + ", " + stat.getVersion());
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}
