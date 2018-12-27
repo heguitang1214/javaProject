@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ai.yunxi.demo.registry.protobuf";
+option java_outer_classname = "PersonProto";
+
+package rpc;
+
+// 定义用户接口
+service Person {
+  // 获取用户信息
+  rpc GetPerson (PersonRequest) returns (PersonReply) {}
+}
+
+message PersonRequest {
+  int32 id = 1;
+}
+
+message PersonReply {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}

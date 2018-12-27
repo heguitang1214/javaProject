@@ -21,6 +21,7 @@
         <module>transaction-xa</module>
         <module>tx_demo</module>
         <module>mq-peakClipping</module>
+        <module>distributedDemo</module>
     </modules>
 
 
