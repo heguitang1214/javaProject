@@ -29,6 +29,30 @@ public class HeapOutOfMemoryError {
         System.out.println("map的长度:" + map.size());
     }
 
+    /**
+     * 复杂的内存溢出分析
+     */
+    private static void test1(){
+        Map<String, Student> map = new HashMap<>();
+        Object[] array = new Object[90000];
+        for (int i = 0; i < array.length; i++){
+            Student s = new Student("test" + i, 100);
+            map.put("test" + i, s);
+            array[i] = s;
+        }
+        System.out.println("map的长度:" + map.size());
+
+        Map<String, Student> map1 = new HashMap<>();
+        Object[] array1 = new Object[20000];
+        for (int i = 0; i < array1.length; i++){
+            Student s = new Student("TEST" + i, 200);
+            map1.put("TEST" + i, s);
+            array1[i] = s;
+        }
+        System.out.println("map的长度:" + map.size() + "//" + map1.size());
+    }
+
+
     static class Student{
         private String name;
         private Integer age;
@@ -54,4 +78,28 @@ public class HeapOutOfMemoryError {
             this.age = age;
         }
     }
+
+
+    static class Parent{
+
+        private String id;
+        private String desc;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
+
 }
