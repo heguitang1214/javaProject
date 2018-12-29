@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-// 李四帮小王支付租金
+// 李四帮小王支付租金，实现java动态代理的接口
 public class DymanicProxy implements InvocationHandler {
     private Object target;
 
@@ -15,7 +15,8 @@ public class DymanicProxy implements InvocationHandler {
         p.rent(3000);
     }
 
-    public Object bind(Object target) {
+//    动态代理进行增强
+    private Object bind(Object target) {
         this.target = target;
         return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
     }

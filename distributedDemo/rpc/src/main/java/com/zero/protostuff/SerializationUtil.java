@@ -6,7 +6,6 @@ import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -44,6 +43,13 @@ public class SerializationUtil {
         }
     }
 
+    /**
+     * 反序列化
+     * @param data byte数据
+     * @param cls 对应的类
+     * @param <T> 泛型参数
+     * @return 泛型实体
+     */
     public static <T> T deserialize(byte[] data, Class<T> cls) {
         try {
             T message = (T) objenesis.newInstance(cls);

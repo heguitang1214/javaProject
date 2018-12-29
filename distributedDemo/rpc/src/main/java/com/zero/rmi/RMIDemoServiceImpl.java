@@ -9,6 +9,6 @@ public class RMIDemoServiceImpl extends UnicastRemoteObject implements RMIDemoSe
 
     @Override
     public String sayHello(String name) throws RemoteException {
-        return "hello " + name;
+        return "服务器：hello " + name;
     }
 }
