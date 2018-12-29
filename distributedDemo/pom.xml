@@ -15,6 +15,7 @@
         <module>zookeeper</module>
         <module>rabbitmq</module>
         <module>redis</module>
+        <module>rpc</module>
     </modules>
 
 

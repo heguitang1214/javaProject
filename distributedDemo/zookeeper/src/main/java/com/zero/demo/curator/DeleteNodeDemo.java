@@ -9,6 +9,7 @@ import org.apache.zookeeper.data.Stat;
 /**
  * 删除zk节点
  */
+// TODO: 2018/12/27 节点删除失败 
 public class DeleteNodeDemo {
 	public static void main(String[] args) throws Exception {
 		String path = "/zk-client/c1";
@@ -21,6 +22,7 @@ public class DeleteNodeDemo {
 		byte[] bytes = client.getData().storingStatIn(stat).forPath(path);
 		System.out.println("获取到需要删除节点的数据:" + new String(bytes) + ",version为：" + stat.getVersion());
 		client.delete().deletingChildrenIfNeeded().withVersion(stat.getVersion()).forPath(path);
+//		client.delete().deletingChildrenIfNeeded().forPath(path);
 
 	}
 }
