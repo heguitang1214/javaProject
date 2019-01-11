@@ -17,6 +17,7 @@
         <module>redis</module>
         <module>rpc</module>
         <module>kafka</module>
+        <module>jmx-log</module>
     </modules>
 
 
