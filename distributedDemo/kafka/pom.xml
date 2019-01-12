@@ -41,6 +41,13 @@
             <artifactId>kafka-streams</artifactId>
             <version>2.0.0</version>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.kafka</groupId>-->
+            <!--<artifactId>kafka-log4j-appender</artifactId>-->
+            <!--<version>2.1.0</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <build>
