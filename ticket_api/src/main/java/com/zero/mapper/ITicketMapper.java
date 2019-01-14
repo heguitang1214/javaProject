@@ -1,8 +1,8 @@
 package com.zero.mapper;
 
+import com.zero.entity.Ticket;
 import org.apache.ibatis.annotations.Mapper;
 
-import ai.yunxi.entity.Ticket;
 
 /**
  * 

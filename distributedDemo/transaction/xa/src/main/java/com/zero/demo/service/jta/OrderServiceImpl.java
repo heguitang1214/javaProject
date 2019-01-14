@@ -1,7 +1,6 @@
 package com.zero.demo.service.jta;
 
-import javax.transaction.UserTransaction;
-
+import com.zero.demo.dao.exp.ReduceStockException;
 import com.zero.demo.dao.jta.OrderDao;
 import com.zero.demo.dao.jta.ProductDao;
 import com.zero.demo.model.Order;
@@ -15,10 +14,7 @@ import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import ai.yunxi.demo.dao.exp.ReduceStockException;
-import ai.yunxi.demo.dao.jta.OrderDao;
-import ai.yunxi.demo.dao.jta.ProductDao;
-import ai.yunxi.demo.model.Order;
+import javax.transaction.UserTransaction;
 
 @Service
 public class OrderServiceImpl implements OrderService {

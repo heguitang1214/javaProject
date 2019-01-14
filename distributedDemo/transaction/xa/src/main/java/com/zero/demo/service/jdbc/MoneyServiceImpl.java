@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ai.yunxi.demo.dao.jdbc.MoneyDao;
-
 @Service
 public class MoneyServiceImpl implements MoneyService {
 

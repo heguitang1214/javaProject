@@ -1,6 +1,6 @@
 package com.zero.demo.dao.jta;
 
-import ai.yunxi.demo.dao.exp.ReduceStockException;
+import com.zero.demo.dao.exp.ReduceStockException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -18,7 +18,6 @@
         <module>rabbitmqDemo</module>
         <module>ticket_api</module>
         <module>ticket_client</module>
-        <module>transaction-xa</module>
         <module>tx_demo</module>
         <module>mq-peakClipping</module>
         <module>distributedDemo</module>

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import ai.yunxi.demo.model.Order;
-
 @Repository
 public class OrderDaoImpl implements OrderDao {
 	private static final Logger log = LoggerFactory.getLogger(OrderDao.class);

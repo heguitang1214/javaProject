@@ -1,8 +1,6 @@
 package com.zero.demo;
 
-import ai.yunxi.demo.dao.exp.ReduceStockException;
-import ai.yunxi.demo.model.Order;
-import ai.yunxi.demo.service.jta.OrderService;
+import com.zero.demo.dao.exp.ReduceStockException;
 import com.zero.demo.model.Order;
 import com.zero.demo.service.jta.OrderService;
 import org.junit.Test;

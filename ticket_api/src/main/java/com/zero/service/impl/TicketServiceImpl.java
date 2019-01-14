@@ -1,6 +1,5 @@
 package com.zero.service.impl;
 
-import ai.yunxi.utils.SnowflakeOrderServiceImpl;
 import com.zero.entity.Ticket;
 import com.zero.mapper.ITicketMapper;
 import com.zero.service.ITicketService;
@@ -9,10 +8,6 @@ import com.zero.utils.SnowflakeOrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ai.yunxi.entity.Ticket;
-import ai.yunxi.mapper.ITicketMapper;
-import ai.yunxi.service.ITicketService;
-import ai.yunxi.utils.JsonUtil;
 
 import javax.annotation.Resource;
 
