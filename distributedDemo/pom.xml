@@ -19,6 +19,8 @@
         <module>kafka</module>
         <module>jmx-log</module>
         <module>transaction</module>
+        <module>springBoot</module>
+        <module>mq_peakClipping</module>
     </modules>
 
 
