@@ -23,7 +23,7 @@ public class RedisPool {
         poolConfig.setMaxTotal(1);
         //请求量过大导致调用者所在线程阻塞,可以通过设置blockWhenExhausted=true
         // 并且设置maxWaitMillis指定最大等待时间,超过该值后将解除阻塞。
-        //客户端虎丘返回值：Could not get a resource from the pool
+        //客户端获取返回值：Could not get a resource from the pool
         poolConfig.setBlockWhenExhausted(true);
         poolConfig.setMaxWaitMillis(TimeUnit.SECONDS.toMillis(2));
 
