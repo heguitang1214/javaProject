@@ -7,8 +7,10 @@ import java.io.Serializable;
  * 简单的字节码分析
  */
 public class Test1 implements Serializable {
-    private String name = "heguiatng";
-    private static String age = "18";
+    private String attr = "attribute";
+    private static String static_attr = "staticAttribute";
+    private final String final_attr = "finalAttribute";
+    private final static String final_static_attr = "finalStaticAttribute";
 
     static void methodTest() {
         try {
