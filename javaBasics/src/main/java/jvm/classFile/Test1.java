@@ -23,8 +23,8 @@ public class Test1 implements Serializable {
             e.printStackTrace();
         }
 //        System.out.printf("方法methodTest......");
-
     }
+
 }
 
 
