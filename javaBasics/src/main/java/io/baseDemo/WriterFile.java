@@ -12,7 +12,7 @@ public class WriterFile {
      * @param context 文件写入内容
      * @throws Exception 异常
      */
-    private static void fileWriter(boolean append, String path, String context) throws Exception {
+    public static void fileWriter(boolean append, String path, String context) throws Exception {
         FileWriter fw = new FileWriter(path, append);
         /*
             为了提高写入效率,使用了字符流的缓冲区，

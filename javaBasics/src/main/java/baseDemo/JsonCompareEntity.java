@@ -662,10 +662,10 @@ public class JsonCompareEntity {
 
         //半刻
 //        List<String> list1 = ReadFile.readLineData("src/main/resources/ioConf/banke.txt");
-        List<String> list1 = ReadFile.readLineData("src/main/resources/ioConf/test1.txt");
+        List<String> list1 = ReadFile.readLineData("javaBasics/src/main/resources/ioConf/test1.txt");
         //大道
 //        List<String> list2 = ReadFile.readLineData("src/main/resources/ioConf/dadao.txt");
-        List<String> list2 = ReadFile.readLineData("src/main/resources/ioConf/test2.txt");
+        List<String> list2 = ReadFile.readLineData("javaBasics/src/main/resources/ioConf/test2.txt");
         for (int i = 0; i < list1.size(); i++) {
 //            if (i != 9){
 //                continue;
