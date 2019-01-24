@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mq_peakClipping</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>ticket_api</module>
+        <module>ticket_client</module>
+    </modules>
 
 
 </project>
