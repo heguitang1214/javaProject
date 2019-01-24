@@ -32,18 +32,19 @@ public class ThreadJoinTest {
         }
 
     }
-}
 
-
-class ThreadJoin implements Runnable {
-    @Override
-    public void run() {
-        for (int i = 0; i < 500; i++) {
+    static class ThreadJoin implements Runnable {
+        @Override
+        public void run() {
+            for (int i = 0; i < 500; i++) {
 //            System.out.println(Thread.currentThread().toString() + "线程输出结果:" + i);
-            System.out.println(Thread.currentThread().getName() + "线程输出结果:" + i);
-            Thread.yield();
+                System.out.println(Thread.currentThread().getName() + "线程输出结果:" + i);
+                Thread.yield();
+            }
+
         }
 
     }
-
 }
+
+

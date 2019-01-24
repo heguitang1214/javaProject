@@ -52,51 +52,54 @@ public class ThreadMutexTest extends Thread {
     public void run() {
         testDto.doSome(key, value);
     }
-}
 
 
-class TestDto {
+    static class TestDto {
 
-    private TestDto() {
-    }
-    private static TestDto _instance = new TestDto();
-    public static TestDto getInstance() {
-        return _instance;
-    }
+        private TestDto() {
+        }
+        private static TestDto _instance = new TestDto();
+        public static TestDto getInstance() {
+            return _instance;
+        }
 
-//    private ArrayList keys = new ArrayList();//线程并发问题
-    private CopyOnWriteArrayList<Object> keys = new CopyOnWriteArrayList<>();
+        //    private ArrayList keys = new ArrayList();//线程并发问题
+        private CopyOnWriteArrayList<Object> keys = new CopyOnWriteArrayList<>();
 
-    public void doSome(Object key, String value) {
-        Object o = key;
-        if (!keys.contains(o)) {
-            keys.add(o);
-        } else {
-            for (Iterator<Object> iter = keys.iterator(); iter.hasNext(); ) {
+        public void doSome(Object key, String value) {
+            Object o = key;
+            if (!keys.contains(o)) {
+                keys.add(o);
+            } else {
+                for (Iterator<Object> iter = keys.iterator(); iter.hasNext(); ) {
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Object oo = iter.next();
+                    if (oo.equals(o)) {
+                        o = oo;
+                        break;
+                    }
+                }
+            }
+            synchronized (o)
+            // 以大括号内的是需要局部同步的代码，不能改动!
+            {
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(1000);
+                    System.out.println(key + ":" + value + ":"
+                            + (System.currentTimeMillis() / 1000));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Object oo = iter.next();
-                if (oo.equals(o)) {
-                    o = oo;
-                    break;
-                }
-            }
-        }
-        synchronized (o)
-        // 以大括号内的是需要局部同步的代码，不能改动!
-        {
-            try {
-                Thread.sleep(1000);
-                System.out.println(key + ":" + value + ":"
-                        + (System.currentTimeMillis() / 1000));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
 }
+
+
+
 
 

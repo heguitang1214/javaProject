@@ -44,16 +44,18 @@ public class ProducerAndConsumer {
             }
         }
     }
-}
 
-//不能改动此类
-class TestDo {
-    static String doSome(String input) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    //不能改动此类
+    static class TestDo {
+        static String doSome(String input) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return input + "数据为:" + (System.currentTimeMillis() / 1000);
         }
-        return input + "数据为:" + (System.currentTimeMillis() / 1000);
     }
 }
+
+

@@ -72,43 +72,43 @@ public class ThreadLocalTest {
     }
 
 
-}
+    static class MyThreadScopeData{
 
-class MyThreadScopeData{
+        //    private static MyThreadScopeData instace = null;
+        private static ThreadLocal<MyThreadScopeData> localData = new ThreadLocal<>();
+        private String name;
+        private int age;
 
-//    private static MyThreadScopeData instace = null;
-    private static ThreadLocal<MyThreadScopeData> localData = new ThreadLocal<>();
-    private String name;
-    private int age;
+        private MyThreadScopeData(){}
 
-    private MyThreadScopeData(){}
-
-    /**
-     * 获取本地线程对象(有就使用,没有就创建),并将值(MyThreadScopeData对象)放入到本地线程中
-     */
-    static /*synchronized*/ MyThreadScopeData getInstace(){
-        MyThreadScopeData instace = localData.get();
-        if (instace == null){
-            instace = new MyThreadScopeData();
-            //本地线程赋值
-            localData.set(instace);
+        /**
+         * 获取本地线程对象(有就使用,没有就创建),并将值(MyThreadScopeData对象)放入到本地线程中
+         */
+        static /*synchronized*/ MyThreadScopeData getInstace(){
+            MyThreadScopeData instace = localData.get();
+            if (instace == null){
+                instace = new MyThreadScopeData();
+                //本地线程赋值
+                localData.set(instace);
+            }
+            return instace;
         }
-        return instace;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 }
