@@ -22,6 +22,7 @@
         <module>springBoot</module>
         <module>mq_peakClipping</module>
         <module>springCloud</module>
+        <module>mongodb</module>
     </modules>
 
 
