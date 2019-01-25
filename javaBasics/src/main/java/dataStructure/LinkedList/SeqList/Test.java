@@ -15,9 +15,9 @@ public class Test {
         seqList.add("bbbb");
         seqList.add("aaaa");
 
-        seqList.removeAll("aaaa");
+//        seqList.removeAll("aaaa");
         System.out.println(seqList.length());
-
+        System.out.println(seqList.toString());
 
 
     }

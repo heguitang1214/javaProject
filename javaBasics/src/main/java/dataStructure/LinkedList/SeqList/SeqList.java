@@ -216,7 +216,7 @@ public class SeqList<T> implements ISeqList<T> {
     /**
      * 传入一个数组初始化顺序表
      *
-     * @param array
+     * @param array 初始化的数组
      */
     public SeqList(T[] array) {
 
@@ -229,15 +229,13 @@ public class SeqList<T> implements ISeqList<T> {
         for (int i = 0; i < array.length; i++) {
             this.table[i] = array[i];
         }
-
         this.length = array.length;
-
     }
 
     /**
      * 判断顺序表是否为空
      *
-     * @return
+     * @return 是否有元素
      */
     @Override
     public boolean isEmpty() {
@@ -247,7 +245,7 @@ public class SeqList<T> implements ISeqList<T> {
     /**
      * 计算顺序表的大小
      *
-     * @return
+     * @return 返回顺序表的长度
      */
     @Override
     public int length() {
@@ -257,11 +255,25 @@ public class SeqList<T> implements ISeqList<T> {
 
     /**
      * 清空顺序表
+     *    这里的清空并没有真正的清空数据，
+     *    只是这些保存在顺序表中的数据你获取不到，
+     *    所以和情空是一样的效果。
      */
     @Override
     public void clear() {
         this.length = 0;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 判断两个顺序表是否相等
@@ -299,14 +311,18 @@ public class SeqList<T> implements ISeqList<T> {
         return this.indexOf(data) >= 0;
     }
 
+    /**
+     * 顺序表的打印
+     * @return 顺序表的打印的打印结果
+     */
     @Override
     public String toString() {
-        String str = "(";
+        StringBuilder str = new StringBuilder("[");
         if (this.length != 0) {
             for (int i = 0; i < this.length - 1; i++)
-                str += this.table[i].toString() + ", ";
-            str += this.table[this.length - 1].toString();
+                str.append(this.table[i].toString()).append(", ");
+            str.append(this.table[this.length - 1].toString());
         }
-        return str + ") ";
+        return str + "]";
     }
 }
