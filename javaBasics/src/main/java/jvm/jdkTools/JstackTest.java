@@ -1,6 +1,7 @@
 package jvm.jdkTools;
 
-import multiThreading.base.deadlock.Deadlock;
+
+import thread.multiBase.deadlock.Deadlock;
 
 /**
  * Created by heguitang on 2018/11/4.

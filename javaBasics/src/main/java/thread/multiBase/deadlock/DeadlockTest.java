@@ -1,13 +1,11 @@
-package jvm.jdkTools;
-
-
-import thread.multiBase.deadlock.Deadlock;
+package thread.multiBase.deadlock;
 
 /**
- * Created by 11256 on 2018/9/12.
- * jstack分析死锁
+ * @author he_guitang
+ * @version [1.0 , 2018/8/13]
+ *  死锁测试
  */
-public class AnalysisDeadlock {
+public class DeadlockTest {
 
     public static void main(String[] args) {
         /*
