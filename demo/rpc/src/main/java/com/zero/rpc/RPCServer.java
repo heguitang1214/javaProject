@@ -15,15 +15,22 @@ import java.util.concurrent.Executors;
  * RPC服务端
  */
 public class RPCServer implements Registry {
+    //启动服务
+    public static void main(String[] args) {
+        RPCServer server = new RPCServer(8080);
+        server.register(DemoService.class, DemoServiceImpl.class);
+        server.start();
+    }
 
     // 服务器端口
     private int port;
 
     // 注册中心（会所的花名册）
-    Map<String, Class> serviceCenter = new HashMap<>();
+    private Map<String, Class> serviceCenter = new HashMap<>();
 
-    // 建立一个固定大小的连接池
-    private static ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    // 建立一个固定大小的连接池：线程核心数=cpu数
+    private static ExecutorService executorService =
+            Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     @Override
     // 简单注册中心
@@ -36,16 +43,18 @@ public class RPCServer implements Registry {
         this.port = port;
     }
 
+    //服务器服务的过程
     private void start() {
+        //BIO socket编程
         ServerSocket serverSocket;
         try {
             // 启动服务器的过程
             serverSocket = new ServerSocket();
             serverSocket.bind(new InetSocketAddress(port));
-            System.out.println("启动服务器.......");
+            System.out.println("启动RPCServer服务器......");
             // 不断接受服务器请求
             for (; ; ) {
-                // 接受客户端的请求(把请求封装成Runnable)
+                // 接受客户端的请求(把请求封装成Runnable)，交给线程池去处理
                 executorService.execute(new ServiceTask(serverSocket.accept()));
             }
         } catch (Exception ex) {
@@ -84,7 +93,7 @@ public class RPCServer implements Registry {
                 // 从注册中心获取服务（从花名册中挑选小妹）
                 Class serviceClass = serviceCenter.get(serviceName);
                 if (serviceClass == null) {
-                    throw new ClassNotFoundException(serviceName + " not found.");
+                    throw new ClassNotFoundException(serviceName + " not found");
                 }
 
                 // 获取方法
@@ -99,10 +108,4 @@ public class RPCServer implements Registry {
         }
     }
 
-    //启动服务
-    public static void main(String[] args) {
-        RPCServer server = new RPCServer(8080);
-        server.register(DemoService.class, DemoServiceImpl.class);
-        server.start();
-    }
 }
