@@ -15,9 +15,6 @@ import com.rabbitmq.client.MessageProperties;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
 /**
- * 
- * @author 小五老师
- * @createTime 2018年9月4日 下午2:44:47
  * 队列声明
  */
 public class RabbitQueueDeclare {

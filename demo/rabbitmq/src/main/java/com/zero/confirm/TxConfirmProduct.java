@@ -10,19 +10,16 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
 /**
- * 
- * @author 小五老师
- * @createTime 2018年9月4日 下午2:44:47
- * 
+ * 	RabbitMQ事务
  */
 public class TxConfirmProduct {
 
 	private static final String EXCHANGE_NAME = "demo.exchange"; //交换器名称
 	private static final String ROUTING_KEY = "demo.routingkey"; //路由键
 	private static final String QUEUE_NAME = "demo.queue"; //队列名称
-	private static final String IP_ADDRESS = "192.168.110.130";
+	private static final String IP_ADDRESS = "47.93.194.11";
 	private static final int PORT = 5672;//RabbitMQ 服务端默认端口号为 5672
-	
+
 	public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
 		ConnectionFactory factory = new ConnectionFactory() ;
 		factory.setHost(IP_ADDRESS) ;
@@ -39,16 +36,18 @@ public class TxConfirmProduct {
 		channel.queueBind(QUEUE_NAME , EXCHANGE_NAME , ROUTING_KEY);
 		//发送一条持久化的消息: hello world !
 		String message = "Hello World !";
-		
+
 		//开启事务机制
 		channel.txSelect();
-		
+
 		channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY ,
 				MessageProperties.PERSISTENT_TEXT_PLAIN,
 				message.getBytes());
 
 		//提交事务
-		channel.txRollback();
+		channel.txCommit();
+		//回滚事务
+//		channel.txRollback();
 		TimeUnit.SECONDS.sleep(1);
 		//关闭资源
 		channel.close() ;
