@@ -1,6 +1,6 @@
-package com.zero.redis;
+package com.zero.redis.distributedLock;
 
-import io.lettuce.core.RedisClient;
+import com.zero.redis.JedisClient;
 import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class RedisDistributedLock implements Lock {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-//        return false;//todo
+//        return false;
     }
 
     @Override
