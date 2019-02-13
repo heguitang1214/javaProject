@@ -45,6 +45,7 @@ public class CollectionModifyExceptionTest {
         Collection<User> users = new ArrayList<>();
 		/*
 		 * ArrayList可能会造成无限循环
+		 *  刪除倒数第二个数据，不会抛异常
 		 */
         users.add(new User("张三", 28));
         users.add(new User("李四", 25));
