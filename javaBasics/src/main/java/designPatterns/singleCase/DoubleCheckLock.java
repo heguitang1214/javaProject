@@ -7,14 +7,13 @@ package designPatterns.singleCase;
  *  懒汉式(双重校验锁模式)
  *      延迟加载
  */
-public class Lazy {
+public class DoubleCheckLock {
 
     //1.构造器私有化
-    private Lazy(){}
+    private DoubleCheckLock(){}
 
     //2.内部创建对象
-    private static Lazy single = null;
-
+    private static volatile DoubleCheckLock single = null;
 
     /**
      * 3.获取返回的单例对象
@@ -25,15 +24,15 @@ public class Lazy {
      *      即：第一次判断会消耗资源，以后就提高了速度。
      *      懒汉式是实例的延迟加载。
      */
-    public static Lazy getInstance(){
+    public static DoubleCheckLock getInstance(){
         /*
           以后创建对象,不需要再进行锁的判断,提升效率
          */
         if (single == null){//解决效率问题
-            synchronized (Lazy.class){
+            synchronized (DoubleCheckLock.class){
                 //防止多个线程同时进行锁判断，第一个线程通过后，后续线程继续创建新的对象
                 if (single == null){//解决安全问题
-                    single = new Lazy();
+                    single = new DoubleCheckLock();
                 }
             }
         }
