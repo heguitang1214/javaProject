@@ -18,15 +18,14 @@ public class StringTest2 {
         System.out.println("==========================================================");
 
 
-        String str3 = "helloWord";//直接指向方法区(常量池)
+        String str3 = "helloWord";//直接指向常量池
         StringBuilder str4 = new StringBuilder("helloWord");//指向堆内存空间
         String str5 = new String("helloWord");//指向堆内存空间
 
 
-        System.out.println(str3 == str4.toString());//比较的是字面量  false
-        System.out.println(str3.equals(str4));//false  StringBuilder不是 String，类型就不一致
-        //String重写了equals(),用来比较指向的对象所存储的内容是否相等(方法区中的常量池) true
-        System.out.println(str3.equals(str4.toString()));//true
+        System.out.println(str3 == str4.toString());//false：比较内存地址，一个常量池，一个堆内存
+        System.out.println(str3.equals(str4));//false：StringBuilder不是String，类型就不一致
+        System.out.println(str3.equals(str4.toString()));//true：使用String.equles()
         System.out.println(str3.equals(str5));//true
 
         System.out.println("***********************************************************");
@@ -36,13 +35,13 @@ public class StringTest2 {
         String c = b + "Word";
         String e = d + "Word";
         System.out.println((str3 == c));//true
-        System.out.println((str3 == e));//false  todo????   str3在常量池中，但是e在堆区中，所以内存地址是不一样的，所以是不相等的
+        System.out.println((str3 == e));//false：str3在常量池中，但是e在堆区中，所以内存地址是不一样的，所以是不相等的
         System.out.println(str3.equals(c));//true
         System.out.println(str3.equals(e));//true
 
         String s = new String("helloWord");
-        System.out.println(str3 == s);//false   虽然都是helloWord，但是引用对象==比较的是地址值
-        System.out.println(str3.equals(s));//true  虽然都是helloWord，但是两个值的hash值一样，所以比较后一样
+        System.out.println(str3 == s);//false： 一个常量池，一个堆内存
+        System.out.println(str3.equals(s));//true：使用String.equles()比较
 
         System.out.println("-------------------------------------------------------------------------");
         Integer x = 12;
