@@ -19,6 +19,6 @@ public class CCBBankImpl implements Strategy {
     public BigDecimal calRecharge(Integer channelId, Integer goodsId) {
 
         //......
-        return new BigDecimal(channelId * goodsId);
+        return new BigDecimal(channelId + goodsId);
     }
 }
