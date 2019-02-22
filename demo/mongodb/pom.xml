@@ -12,4 +12,14 @@
     <artifactId>mongodb</artifactId>
 
 
+    <dependencies>
+        <!-- MongoDB Driver依赖 -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>3.8.2</version>
+        </dependency>
+    </dependencies>
+
+
 </project>

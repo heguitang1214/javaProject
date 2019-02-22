@@ -1,4 +1,4 @@
-package currentLimiting;
+package currentLimiting.baseCode;
 
 /**
  * 服务接口
