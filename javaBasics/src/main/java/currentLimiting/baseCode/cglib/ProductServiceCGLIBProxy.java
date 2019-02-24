@@ -1,8 +1,8 @@
 package currentLimiting.baseCode.cglib;
 
-import currentLimiting.Monitor;
-import currentLimiting.MonitorManage;
-import currentLimiting.ProductServiceImpl;
+import currentLimiting.baseCode.Monitor;
+import currentLimiting.baseCode.MonitorManage;
+import currentLimiting.baseCode.ProductServiceImpl;
 import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
