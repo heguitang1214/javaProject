@@ -1,4 +1,4 @@
-package mqDelayDemo;
+package rabbitmqAchieve;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

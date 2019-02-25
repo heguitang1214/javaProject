@@ -1,4 +1,4 @@
-package mqDelayDemo;
+package rabbitmqAchieve;
 /**
  * 定义MQ中所需要的交换器名、队列名及绑定值
  */
