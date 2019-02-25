@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- classPathEntry:数据库的JDBC驱动的jar包地址 -->
+    <classPathEntry
+            location="C:\Users\jameslau\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\5.1.25\6b2835d687a706678591febfd47b077dcce41595\mysql-connector-java-5.1.25.jar" />
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 抑制警告 -->
+            <property name="suppressTypeWarnings" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+            <!-- 是否生成注释代时间戳 -->
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/yunxi" userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+          NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.yunxi.seckill.pojo"
+                            targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <sqlMapGenerator targetPackage="com.yunxi.seckill.dao"
+                         targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.yunxi.seckill.dao"
+                             targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+        <!-- <table schema="untodo" tableName="T_USER" domainObjectName="User"/> -->
+        <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+        <!-- <table schema="untodo" tableName="T_USER" domainObjectName="User"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+        <!--生成对应表及类名 -->
+        <table tableName="seckill_goods" > </table>
+        <table tableName="seckill_order" > </table>
+
+    </context>
+
+</generatorConfiguration>

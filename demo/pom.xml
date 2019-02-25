@@ -24,6 +24,7 @@
         <module>springCloud</module>
         <module>mongodb</module>
         <module>delay_queue</module>
+        <module>lockTest</module>
     </modules>
 
 
