@@ -13,9 +13,9 @@
     <packaging>war</packaging>
 
     <!-- 项目属性 -->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+    <!--</properties>-->
 
 
     <dependencies>

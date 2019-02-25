@@ -1,8 +1,7 @@
-package redisTest;
-
 import org.junit.Test;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
+
 import java.util.HashSet;
 import java.util.Set;
 

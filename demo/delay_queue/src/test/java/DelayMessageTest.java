@@ -1,15 +1,12 @@
-package RabbitMQTest;
-
-import java.util.concurrent.CountDownLatch;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import rabbitMQ.DelayMessageApplication;
-import rabbitMQ.utils.DelayMessageService;
+import utils.DelayMessageService;
+
+import java.util.concurrent.CountDownLatch;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
