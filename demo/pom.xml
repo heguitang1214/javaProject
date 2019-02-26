@@ -25,6 +25,7 @@
         <module>mongodb</module>
         <module>delay_queue</module>
         <module>lockTest</module>
+        <module>sharding</module>
     </modules>
 
 
