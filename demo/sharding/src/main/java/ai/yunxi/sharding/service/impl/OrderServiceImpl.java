@@ -21,6 +21,18 @@ public class OrderServiceImpl implements OrderService {
     private OrderItemMapper orderItemMapper;
 
     @Override
+    public void save() {
+        Order order = OrderGenerator.generate();
+        OrderItem orderItem = ItemGenerator.generate();
+        orderItem.setUserId(order.getUserId());
+        orderItem.setOrderId(order.getOrderId());
+
+        orderMapper.save(order);
+        orderItemMapper.save(orderItem);
+
+    }
+
+    @Override
     public void save(Order order, OrderItem item) {
         orderMapper.save(order);
         orderItemMapper.save(item);
@@ -30,4 +42,6 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findHint() {
         return orderMapper.selectHint();
     }
+
+
 }

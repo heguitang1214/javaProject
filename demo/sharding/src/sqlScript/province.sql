@@ -1,0 +1,5 @@
+CREATE TABLE `t_province` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

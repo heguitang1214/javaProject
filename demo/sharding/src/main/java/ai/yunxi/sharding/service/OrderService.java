@@ -9,6 +9,8 @@ public interface OrderService {
 
     public List<Order> findHint();
 
+    void save();
+
     public void save(Order order, OrderItem item);
 
 }

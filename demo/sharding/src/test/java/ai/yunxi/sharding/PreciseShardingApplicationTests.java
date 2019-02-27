@@ -1,7 +1,6 @@
 package ai.yunxi.sharding;
 
-import ai.yunxi.sharding.model.Province;
-import ai.yunxi.sharding.service.ProvinceService;
+import ai.yunxi.sharding.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * 广播表测试
- *  插入到所有的表中
+ * 测试使用表达式进行数据分片
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShardingApplication.class)
-public class BroadcastTableApplicationTests {
+public class PreciseShardingApplicationTests {
+
     @Autowired
-    private ProvinceService provinceService;
+    OrderService orderService;
 
     @Test
-    public void test() {
-        Province pro = new Province();
-        pro.setId(222);
-        pro.setName("上海");
-        provinceService.save(pro);
+    public void contextLoads() {
+        orderService.save();
     }
+
 }
+
