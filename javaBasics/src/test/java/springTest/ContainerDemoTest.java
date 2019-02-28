@@ -1,7 +1,7 @@
 package springTest;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import springDemo.baseDemo.BeanDemo;
+import springDemo.lifeCycleDemo.BeanDemo;
 
 /**
  * Bean级生命周期+容器级生命周期测试

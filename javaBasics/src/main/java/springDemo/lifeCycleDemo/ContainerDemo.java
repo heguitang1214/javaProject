@@ -1,4 +1,4 @@
-package springDemo.baseDemo;
+package springDemo.lifeCycleDemo;
 
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;

@@ -1,4 +1,4 @@
-package springDemo.baseDemo;
+package springDemo.lifeCycleDemo;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;

@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Container-->
-    <bean id="containerLifecycle" class="springDemo.baseDemo.ContainerDemo">
+    <bean id="containerLifecycle" class="springDemo.lifeCycleDemo.ContainerDemo">
     </bean>
 
 </beans>

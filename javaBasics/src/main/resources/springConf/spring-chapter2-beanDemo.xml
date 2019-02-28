@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Person-->
-    <bean id="beanLifecycle" class="springDemo.baseDemo.BeanDemo"
+    <bean id="beanLifecycle" class="springDemo.lifeCycleDemo.BeanDemo"
           init-method="lifecycleInit" destroy-method="lifecycleInitDestroy">
     </bean>
 
