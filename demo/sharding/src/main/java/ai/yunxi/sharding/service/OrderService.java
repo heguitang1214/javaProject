@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface OrderService {
 
-    public List<Order> findHint();
+    List<Order> findHint();
 
     void save();
 
-    public void save(Order order, OrderItem item);
+    void save(Order order, OrderItem item);
 
 }
