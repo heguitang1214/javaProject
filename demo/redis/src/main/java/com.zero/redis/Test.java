@@ -2,9 +2,7 @@ package com.zero.redis;
 
 import redis.clients.jedis.Jedis;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author he_guitang
@@ -34,26 +32,34 @@ public class Test {
     /**
      * 测试redis并发获取锁
      */
-    private static void concurrentLock(){
+    private static void concurrentLock() {
         Jedis jedis = JedisConnection.getRedisConnection();
-        ExecutorService service = Executors.newCachedThreadPool();
-        final CountDownLatch cdOrder = new CountDownLatch(1);//设置初始值为1
-        final CountDownLatch cdAnswer = new CountDownLatch(30);//设置初始值为3
+        ExecutorService service = new ThreadPoolExecutor(20, 30, 0L, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<>(1000), new ThreadPoolExecutor.CallerRunsPolicy());
+
+        //设置初始值为1
+        final CountDownLatch cdOrder = new CountDownLatch(1);
+        //设置初始值为3
+        final CountDownLatch cdAnswer = new CountDownLatch(30);
         for (int i = 0; i < 30; i++) {
             Runnable runnable = new Runnable() {
+                @Override
                 public void run() {
                     try {
                         //等待当前的计数器为0
                         cdOrder.await();
                         Jedis jedis = JedisConnection.getRedisConnection();
                         Boolean bb1 = JedisUtil.releaseDistributedLock(jedis, "redis1", "1024");
-                        System.out.println("释放分布式锁:"+ bb1);
+                        System.out.println("释放分布式锁:" + bb1);
                         Boolean bb2 = JedisUtil.releaseDistributedLock(jedis, "redis2", "1024");
-                        System.out.println("释放分布式锁:"+ bb2);
+                        System.out.println("释放分布式锁:" + bb2);
                         //将cdAnswer计数器上的数值减少1
-                        cdAnswer.countDown();
+//                        cdAnswer.countDown();
                     } catch (Exception e) {
                         e.printStackTrace();
+                    } finally {
+                        //将cdAnswer计数器上的数值减少1
+                        cdAnswer.countDown();
                     }
                 }
             };

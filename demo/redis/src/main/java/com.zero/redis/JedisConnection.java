@@ -16,9 +16,10 @@ public class JedisConnection {
 
     private static void connectionRedis(){
         // 连接 Redis 服务
-        Jedis jedis = new Jedis("47.93.194.11", 6379); // 默认端口
+        Jedis jedis = new Jedis("47.93.194.11", 6379);
         //Jedis jedis = new Jedis("10.80.248.22",6379); // 指定端口
-        jedis.auth(""); // 指定密码
+        // 指定密码
+        jedis.auth("");
         System.out.println("Connection to server sucessfully......");
         //查看服务是否运行
         System.out.println("Server is running: " + jedis.ping());
@@ -32,8 +33,9 @@ public class JedisConnection {
 
     static Jedis getRedisConnection(){
         // 连接 Redis 服务
-        Jedis jedis = new Jedis("47.93.194.11", 6379); // 默认端口
-        jedis.auth(""); // 指定密码
+        Jedis jedis = new Jedis("47.93.194.11", 6379);
+        // 指定密码
+        jedis.auth("");
         System.out.println("Connection to server sucessfully......");
         //查看服务是否运行
         System.out.println("Server is running: " + jedis.ping());

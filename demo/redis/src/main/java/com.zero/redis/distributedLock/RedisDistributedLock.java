@@ -14,14 +14,28 @@ import java.util.concurrent.locks.Lock;
 /**
  * Created by heguitang on 2019/2/7.
  * 分布式锁
+ * @author Tang
  */
 public class RedisDistributedLock implements Lock {
 
-    //锁信息的上下文，保存当前锁的持有人id
+    private static final String LOCK_SUCCESS = "OK";
+    private static final String SET_IF_NOT_EXIST = "NX";
+    private static final String SET_WITH_EXPIRE_TIME = "PX";
+    private static final Long RELEASE_SUCCESS = 1L;
+
+    /**
+     * 锁信息的上下文，保存当前锁的持有人id
+     */
     private ThreadLocal<String> localContext = new ThreadLocal<>();
-    //默认锁的超时时间
+
+    /**
+     * 默认锁的超时时间
+     */
     private long time = 100;
-    //线程重入，表示当前线程是否获取了锁
+
+    /**
+     * 线程重入，表示当前线程是否获取了锁
+     */
     private Thread exclusiveOwnerThread;
 
     public Thread getExclusiveOwnerThread() {
@@ -32,7 +46,9 @@ public class RedisDistributedLock implements Lock {
         this.exclusiveOwnerThread = exclusiveOwnerThread;
     }
 
-    //    阻塞式
+    /**
+     * 阻塞式
+     */
     @Override
     public void lock() {
         while (!tryLock()) {
@@ -63,11 +79,14 @@ public class RedisDistributedLock implements Lock {
         Jedis jedis = JedisClient.getClient();
 
         //加锁并设置锁的有效期
-        if ("OK".equals(jedis.set("lock", id, "NX", "PX", unit.toMillis(time)))) {
-            localContext.set(id);//记录锁的持有人id
-            setExclusiveOwnerThread(t);//记录当前线程
+        if (LOCK_SUCCESS.equals(jedis.set("lock", id, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, unit.toMillis(time)))) {
+            //记录锁的持有人id
+            localContext.set(id);
+            //记录当前线程
+            setExclusiveOwnerThread(t);
             return true;
-        } else if (exclusiveOwnerThread == t) {//当前线程已经获得了锁，可重入
+            //当前线程已经获得了锁，可重入
+        } else if (exclusiveOwnerThread == t) {
             //可以实现重入计数器
             return false;
         }
@@ -97,7 +116,10 @@ public class RedisDistributedLock implements Lock {
         return null;
     }
 
-    //中断,停止加锁
+    /**
+     * 中断,停止加锁
+     * @throws InterruptedException 异常
+     */
     @Override
     public void lockInterruptibly() throws InterruptedException {
         if (Thread.interrupted()) {
