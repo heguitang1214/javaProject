@@ -33,6 +33,7 @@ public class CountdownLatchTest {
         final CountDownLatch cdAnswer = new CountDownLatch(3);//设置初始值为3
         for (int i = 0; i < 3; i++) {
             Runnable runnable = new Runnable() {
+                @Override
                 public void run() {
                     try {
                         System.out.println("线程" + Thread.currentThread().getName() +

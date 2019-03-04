@@ -5,7 +5,7 @@ import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
@@ -22,6 +22,7 @@ public class RedisDistributedLock implements Lock {
     private static final String SET_IF_NOT_EXIST = "NX";
     private static final String SET_WITH_EXPIRE_TIME = "PX";
     private static final Long RELEASE_SUCCESS = 1L;
+    private static final String LOCK_KEY = "lock";
 
     /**
      * 锁信息的上下文，保存当前锁的持有人id
@@ -79,7 +80,7 @@ public class RedisDistributedLock implements Lock {
         Jedis jedis = JedisClient.getClient();
 
         //加锁并设置锁的有效期
-        if (LOCK_SUCCESS.equals(jedis.set("lock", id, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, unit.toMillis(time)))) {
+        if (LOCK_SUCCESS.equals(jedis.set(LOCK_KEY, id, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, unit.toMillis(time)))) {
             //记录锁的持有人id
             localContext.set(id);
             //记录当前线程
@@ -104,7 +105,8 @@ public class RedisDistributedLock implements Lock {
                 return;
             }
             //删除锁
-            jedis.eval(script, Arrays.asList("lock"), Arrays.asList(localContext.get()));
+//            jedis.eval(script, Arrays.asList(LOCK_KEY), Arrays.asList(localContext.get()));
+            jedis.eval(script, Collections.singletonList(LOCK_KEY), Collections.singletonList(localContext.get()));
             localContext.remove();
         } catch (Exception e) {
             e.printStackTrace();
