@@ -4,6 +4,7 @@ import io.shardingsphere.core.parsing.lexer.dialect.mysql.MySQLLexer;
 
 /**
  * 测试MySQL的解析引擎
+ *
  * @author Tang
  */
 public class TestLexer {
@@ -13,60 +14,66 @@ public class TestLexer {
                 " WHERE o.user_id=? AND o.order_id=?";
         MySQLLexer lexer = new MySQLLexer(sql);
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();
-        System.out.println(lexer.getCurrentToken().getType()+", "+lexer.getCurrentToken().getLiterals());
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
+        lexer.nextToken();
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
+        lexer.nextToken();
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
+        lexer.nextToken();
+        System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
     }
 }
