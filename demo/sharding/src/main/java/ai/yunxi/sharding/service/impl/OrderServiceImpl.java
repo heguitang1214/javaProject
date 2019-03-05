@@ -7,12 +7,22 @@ import ai.yunxi.sharding.model.Order;
 import ai.yunxi.sharding.model.OrderGenerator;
 import ai.yunxi.sharding.model.OrderItem;
 import ai.yunxi.sharding.service.OrderService;
+import io.shardingsphere.transaction.annotation.ShardingTransactionType;
+import io.shardingsphere.transaction.api.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 订单的实现类
+ * @author tang
+ */
 @Service
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+@ShardingTransactionType(TransactionType.LOCAL)
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
@@ -33,8 +43,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void save(Order order, OrderItem item) {
+        System.out.println("haha 我执行了");
         orderMapper.save(order);
+        int i = 90 / 0;
+        System.out.println(i);
         orderItemMapper.save(item);
     }
 

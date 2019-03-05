@@ -44,17 +44,19 @@ public class StandardShardingApplicationTests {
     }
 
 
-
-//    @Test
-//    public void contextLoads() {
-//        Order order = OrderGenerator.generate();
-//        order.setUserId(10000000);
-//        order.setOrderId(1000000);
-//        OrderItem orderItem = ItemGenerator.generate();
-//        orderItem.setUserId(order.getUserId());
-//        orderItem.setOrderId(order.getOrderId());
-//        orderService.save(order, orderItem);
-//    }
+    /**
+     * 测试sharding-jdbc的事务问题。
+     */
+    @Test
+    public void contextLoads1() {
+        Order order = OrderGenerator.generate();
+        order.setUserId(10000000);
+        order.setOrderId(1000000);
+        OrderItem orderItem = ItemGenerator.generate();
+        orderItem.setUserId(order.getUserId());
+        orderItem.setOrderId(order.getOrderId());
+        orderService.save(order, orderItem);
+    }
 
 }
 
