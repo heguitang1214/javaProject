@@ -17,15 +17,15 @@
 
     <dependencies>
         <!--springBoot相关Jar包-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-web</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-test</artifactId>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <!--<dependency>-->
             <!--<groupId>org.springframework</groupId>-->
@@ -38,6 +38,11 @@
             <!--<version>4.12</version>-->
             <!--<scope>test</scope>-->
         <!--</dependency>-->
+        <!-- 添加对mongodb的支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
 
 
         <!-- MongoDB Driver依赖 -->
@@ -62,18 +67,18 @@
     </dependencies>
 
 
-    <!--<dependencyManagement>-->
-        <!--<dependencies>-->
-            <!--<dependency>-->
-                <!--&lt;!&ndash;从Spring Boot导入依赖关系管理&ndash;&gt;-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-dependencies</artifactId>-->
-                <!--<version>2.0.6.RELEASE</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
-        <!--</dependencies>-->
-    <!--</dependencyManagement>-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!--从Spring Boot导入依赖关系管理-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.6.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>

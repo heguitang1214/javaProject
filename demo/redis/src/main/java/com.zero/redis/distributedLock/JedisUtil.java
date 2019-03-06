@@ -8,6 +8,7 @@ import java.util.Collections;
  * Created by he_guitang
  * 2018/8/15
  *  Jedis获取和释放分布式锁
+ * @author Tang
  */
 public class JedisUtil {
 

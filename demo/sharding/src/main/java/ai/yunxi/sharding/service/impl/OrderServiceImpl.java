@@ -44,6 +44,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @ShardingTransactionType(TransactionType.LOCAL)
     public void save(Order order, OrderItem item) {
         System.out.println("haha 我执行了");
         orderMapper.save(order);
