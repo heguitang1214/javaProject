@@ -20,8 +20,11 @@ public class HintApplicationTests {
     @Test
     public void test() {
         HintManager hintManager = HintManager.getInstance();
+        //指定数据库
         hintManager.addDatabaseShardingValue("t_order", 1);
+        //指定表
         hintManager.addTableShardingValue("t_order", 1);
+//        hintManager.setDatabaseShardingValue(1);
         System.out.println(orderService.findHint());
     }
 }

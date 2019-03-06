@@ -13,6 +13,12 @@ public class TestLexer {
                 " JOIN t_order_item i ON o.order_id=i.order_id" +
                 " WHERE o.user_id=? AND o.order_id=?";
         MySQLLexer lexer = new MySQLLexer(sql);
+//        lexer.nextToken();
+//        while (!Assist.END.name().equals(lexer.getCurrentToken().getType())){
+//
+//            System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
+//            lexer.nextToken();
+//        }
         lexer.nextToken();
         System.out.println(lexer.getCurrentToken().getType() + " | " + lexer.getCurrentToken().getLiterals());
         lexer.nextToken();

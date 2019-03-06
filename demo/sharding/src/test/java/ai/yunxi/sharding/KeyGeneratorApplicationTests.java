@@ -6,6 +6,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * 雪花算法：
+ *      测试雪花算法生成主键ID
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShardingApplication.class)
 public class KeyGeneratorApplicationTests {
