@@ -4,18 +4,29 @@ package dataStructure.myHashMap;
 /**
  * Created by 11256 on 2018/8/30.
  * HashMap:位运算,提高效率
+ * @author Tang
  */
 public class HashMap<K, V> implements Map<K, V> {
 
-    //定义一个存放数据的Node类型的数组
-    private Node<K, V> hashTable[] = null;
-    //集合中元素的个数
+    /**
+     * 定义一个存放数据的Node类型的数组
+     */
+    private Node<K, V>[] hashTable = null;
+    /**
+     * 集合中元素的个数
+     */
     private int size;
-    //设置集合数组的默认长度
+    /**
+     * 设置集合数组的默认长度
+     */
     private static int defaultCapacity = 1 << 4;
-    //设置默认的加载因子 ***
+    /**
+     * 设置默认的加载因子 ***
+     */
     private static float defaultLoadFactor = 0.75f;
-    //阀值(数组的长度 * 加载因子)
+    /**
+     * 阀值(数组的长度 * 加载因子)
+     */
     private int threshold;
 
 
@@ -61,7 +72,7 @@ public class HashMap<K, V> implements Map<K, V> {
      *      将原数组中的数据拷贝到新的数组中,需要重新计算每个元素的hashCode值
      */
     private void resize() {
-        Node<K, V> newHashTable[] = new Node[hashTable.length << 1];
+        Node<K, V>[] newHashTable = new Node[hashTable.length << 1];
         //循环数组
         for (Node<K, V> aHashTable : hashTable) {
             //循环链表
@@ -89,7 +100,7 @@ public class HashMap<K, V> implements Map<K, V> {
      * 与算法获取下标
      */
     private int getIndex(K key, int length) {
-        if (key == null) return 0;
+        if (key == null) {return 0;}
         return key.hashCode() & (length - 1);
     }
 
