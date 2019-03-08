@@ -1,6 +1,6 @@
 package codeOptimization;
 
-import dataStructure.myHashMap.HashMap;
+import datastructure.myHashMap.HashMap;
 import org.reflections.Reflections;
 
 import java.util.Set;
