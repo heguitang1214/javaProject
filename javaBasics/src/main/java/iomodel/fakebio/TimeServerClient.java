@@ -7,10 +7,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
+ * 伪异步IO模型：客户端
  *
- * @author Five
- * @createTime 2017年11月13日 下午3:31:45
- *
+ * @author Tang
  */
 public class TimeServerClient {
 

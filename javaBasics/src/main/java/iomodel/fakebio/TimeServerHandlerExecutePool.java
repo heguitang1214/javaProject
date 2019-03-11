@@ -6,21 +6,20 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 线程池
  *
- * @author Five
- * @createTime 2017Äê11ÔÂ13ÈÕ ÏÂÎç3:49:31
- *
+ * @author Tang
  */
 public class TimeServerHandlerExecutePool {
 
-	private ExecutorService executor;
+    private ExecutorService executor;
 
-	public TimeServerHandlerExecutePool(int maxPoolSize, int queueSize) {
-		executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize, 120l, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(queueSize));
-	}
+    public TimeServerHandlerExecutePool(int maxPoolSize, int queueSize) {
+        executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize, 120L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(queueSize));
+    }
 
-	public void execute(Runnable task) {
-		executor.execute(task);
-	}
+    public void execute(Runnable task) {
+        executor.execute(task);
+    }
 
 }
