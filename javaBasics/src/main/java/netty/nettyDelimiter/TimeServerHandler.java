@@ -1,4 +1,4 @@
-package ai.yunxi.nettyDelimiter;
+package netty.nettyDelimiter;
 
 import java.util.Date;
 

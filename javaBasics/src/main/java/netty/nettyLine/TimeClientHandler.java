@@ -1,4 +1,4 @@
-package ai.yunxi.nettyLine;
+package netty.nettyLine;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
