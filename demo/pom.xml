@@ -26,6 +26,7 @@
         <module>delay_queue</module>
         <module>lockTest</module>
         <module>sharding</module>
+        <module>netty</module>
     </modules>
 
 
