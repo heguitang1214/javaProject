@@ -27,6 +27,7 @@
         <module>lockTest</module>
         <module>sharding</module>
         <module>netty</module>
+        <module>hystrix</module>
     </modules>
 
 

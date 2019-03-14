@@ -1,0 +1,14 @@
+隔离策略
+hystrix提供了两种隔离策略：线程池隔离和信号量隔离。hystrix默认采用线程池隔离。
+
+线程池隔离：不同服务通过使用不同线程池，彼此间将不受影响，达到隔离效果。以demo为例，
+我们通过andThreadPoolKey配置使用命名为ThreadPoolTest的线程池，实现与其他命名的线程池天然隔离，
+如果不配置andThreadPoolKey则使用withGroupKey配置来命名线程池
+
+信号量隔离：线程隔离会带来线程开销，有些场景（比如无网络请求场景）可能会因为用开销换隔离得不偿失，
+为此hystrix提供了信号量隔离，当服务的并发数大于信号量阈值时将进入fallback。以demo为例，
+通过withExecutionIsolationStrategy(ExecutionIsolationStrategy.SEMAPHORE)配置为信号量隔离，
+通过withExecutionIsolationSemaphoreMaxConcurrentRequests配置执行并发数不能大于3，
+由于信号量隔离下无论调用哪种命令执行方法，hystrix都不会创建新线程执行run()/construct()，
+所以调用程序需要自己创建多个线程来模拟并发调用execute()，最后看到一旦并发线程>3，后续请求都进入fallback
+
