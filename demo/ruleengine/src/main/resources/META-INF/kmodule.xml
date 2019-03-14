@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Kmodule 中可以包含一个到多个 kbase,分别对应 drl 的规则文件。-->
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.drools.org/xsd/kmodule">
+
+    <!--Kbase 需要一个唯一的 name,可以取任意字符串。-->
+    <!--packages 为drl文件所在resource目录下的路径。
+    注意区分drl文件中的package与此处的package不一定相同。
+    多个包用逗号分隔。默认情况下会扫描 resources目录下所有(包含子目录)规则文件。-->
+    <kbase name="point-rulesKB" packages="rules">
+        <!--kbase 下面可以有一个或多个 ksession,
+        ksession 的 name 属性必须设置,且必须唯一。-->
+        <ksession name="point-rulesKS"/>
+    </kbase>
+
+    <kbase name="HelloWorldKB" packages="rules">
+        <ksession name="HelloWorldKS"/>
+    </kbase>
+
+
+</kmodule>

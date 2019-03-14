@@ -28,6 +28,7 @@
         <module>sharding</module>
         <module>netty</module>
         <module>hystrix</module>
+        <module>ruleengine</module>
     </modules>
 
 
