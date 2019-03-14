@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package protocol;
+
+option java_package = "ai.yunxi.protobuf";
+option java_outer_classname = "UserProto";
+
+message UserProtocol {
+  required string id = 1;
+  required string name = 2;
+}

@@ -34,6 +34,11 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 //		}
     }
 
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        System.out.println("userEventTriggered......" +  ctx.channel());
+    }
+
     /**
      * 接收服务器的响应
      */
