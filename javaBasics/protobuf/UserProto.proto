@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package protocol;
 
-option java_package = "ai.yunxi.protobuf";
+option java_package = "netty.protobuf";
 option java_outer_classname = "UserProto";
 
 message UserProtocol {
