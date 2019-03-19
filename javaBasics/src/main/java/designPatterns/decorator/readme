@@ -1,0 +1,5 @@
+3.装饰者模式
+    咖啡馆订单项目：咖啡种类和调料的组合
+    1）、咖啡种类：Espresso、ShortBlack、LongBlack、Decaf
+    2）、调料：Milk、Soy、Chocolate
+    3）、扩展性好、改动方便、维护方便
