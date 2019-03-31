@@ -10,16 +10,13 @@ import java.util.Set;
  */
 public class Test1 {
 
-    File f = new File(this.getClass().getResource("/").getPath());
-    File f1 = new File(this.getClass().getResource("").getPath());
-
     public static void main(String[] args) {
-        //  /D:/myjava/javaBasics/out/production/javaBasics/
-        System.out.println(Class.class.getClass().getResource("/").getPath() );
-
-        String str = "1";
-        System.out.println(str.matches("^//d+(//.//d+)?$"));
-        System.out.println(str.matches("^(-)?[0-9]*$"));
+        int j = 0;
+        for (int i = 0; i < 5; i++){
+            System.out.println(j);
+            System.out.println(i);
+            j++;
+        }
 
     }
 

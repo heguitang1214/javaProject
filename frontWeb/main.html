@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<meta charset="utf-8">
+<script type="text/javascript">
 
+    var j = 0;
+    for(var i = 0; i <5; i++){
+        setTimeout(function(){
+            console.log(j);
+            console.log(i);
+        },100);
+        j++;
+    }
+
+</script>
+<body>
+setTimeout()只执行函数一次，如果需要多次调用可以使用setInterval(),或者在函数体内再次调用setTimeout()
 </body>
 </html>
