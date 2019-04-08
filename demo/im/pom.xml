@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>im</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>im-server</module>
+        <module>im-client</module>
+        <module>im-commons</module>
+    </modules>
 
 
     <dependencies>
@@ -24,11 +30,7 @@
             <version>3.4.0</version>
         </dependency>
     </dependencies>
-    <modules>
-        <module>im-server</module>
-        <module>im-client</module>
-        <module>im-commons</module>
-    </modules>
+
 
     <dependencyManagement>
         <dependencies>
