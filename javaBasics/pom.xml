@@ -7,7 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>groupId</groupId>
     <artifactId>javaBasics</artifactId>
@@ -18,10 +18,6 @@
 
     <!-- 项目属性 -->
     <properties>
-        <!-- 指明使用JDK8 -->
-        <java-version>1.8</java-version>
-        <!-- 指明使用utf-8编码 -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- main version setting -->
         <google.zxing.version>3.3.0</google.zxing.version>
     </properties>
@@ -178,8 +174,6 @@
             <artifactId>reflections</artifactId>
             <version>0.9.11</version>
         </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -197,9 +191,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>
-
-
-
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
@@ -244,22 +235,23 @@
             <!--</snapshots>-->
         <!--</repository>-->
     <!--</repositories>-->
-    <build>
-        <plugins>
-            <!--指定Java版本-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--&lt;!&ndash;指定Java版本&ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>2.0.2</version>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 </project>

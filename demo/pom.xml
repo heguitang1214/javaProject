@@ -32,4 +32,18 @@
     </modules>
 
 
+    <dependencyManagement>
+        <dependencies>
+            <!--从Spring Boot导入依赖关系管理-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.6.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
 </project>
