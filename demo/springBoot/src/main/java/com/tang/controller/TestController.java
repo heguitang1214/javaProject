@@ -1,6 +1,6 @@
-package com.zero.controller;
+package com.tang.controller;
 
-import com.zero.entry.Person;
+import com.tang.entry.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;

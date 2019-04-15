@@ -1,6 +1,6 @@
-package com.zero.mapper;
+package com.tang.mapper;
 
-import com.zero.entry.User;
+import com.tang.entry.User;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package com.zero.security;
+package com.tang.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

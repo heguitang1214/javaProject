@@ -1,4 +1,4 @@
-package com.zero.entry;
+package com.tang.entry;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

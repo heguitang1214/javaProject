@@ -1,7 +1,7 @@
-package com.zero.security;
+package com.tang.security;
 
-import com.zero.entry.User;
-import com.zero.mapper.UserMapper;
+import com.tang.entry.User;
+import com.tang.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
 //    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userinfo = userMapper.getUserByName(username);
-        return new org.springframework.security.core.userdetails.User(username, userinfo.getUserPwd(), AuthorityUtils.commaSeparatedStringToAuthorityList(userinfo.getRole()));
+        return new org.springframework.security.core.userdetails.User(username, userinfo.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(userinfo.getRole()));
     }
 
 }
