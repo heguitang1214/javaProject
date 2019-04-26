@@ -3,19 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>demo</artifactId>
+        <artifactId>im</artifactId>
         <groupId>com.zero</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springCloud</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>config_client</module>
-        <module>config_server</module>
-        <module>config</module>
-    </modules>
+    <artifactId>im-route</artifactId>
 
 
 </project>
