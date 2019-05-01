@@ -21,7 +21,7 @@
         <module>transaction</module>
         <module>springBoot</module>
         <module>mq_peakClipping</module>
-        <module>springCloud</module>
+        <module>spring-cloud</module>
         <module>mongodb</module>
         <module>delay_queue</module>
         <module>lockTest</module>
