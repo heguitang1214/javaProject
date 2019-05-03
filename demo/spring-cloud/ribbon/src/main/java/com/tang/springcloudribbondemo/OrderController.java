@@ -1,12 +1,13 @@
-package com.tang.springcloudeurekaconsumerdemo;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+package com.tang.springcloudribbondemo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * TODO..
@@ -18,7 +19,7 @@ import java.util.List;
 @RestController
 public class OrderController {
 
-    private static final List<OrderInfo> list = new ArrayList<OrderInfo>();
+    private static final List<OrderInfo> list = new ArrayList<>();
 
     @Autowired
     private RestTemplate restTemplate;
@@ -29,8 +30,8 @@ public class OrderController {
      * @param num
      * @return
      */
-    @GetMapping("/order")
-    public String order(String productName, Integer num){
+    @GetMapping("/order/{productName}/{num}")
+    public String order(@PathVariable("productName") String productName, @PathVariable("num") Integer num){
 
         if(productName != null && !productName.isEmpty()){
 
@@ -38,9 +39,10 @@ public class OrderController {
 
             // 调用服务提供者
             String result = restTemplate.getForObject("http://eureka-provider/updateProduct/" + productName + "/" + num, String.class);
-//            String result = restTemplate.getForObject("http://eureka-provider/updateProduct?productName=" + productName + "&num=" + num, String.class);
             return result;
         }
+        
+//        String result = restTemplate.getForObject("http://log-provider/logs", String.class);
         return null;
     }
 }

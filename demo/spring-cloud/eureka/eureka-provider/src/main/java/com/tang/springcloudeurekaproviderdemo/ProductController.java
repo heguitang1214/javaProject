@@ -24,7 +24,7 @@ public class ProductController {
      * @param num
      * @return
      */
-    @GetMapping("/updateProduct")
+    @GetMapping("/updateProduct/{productName}/{num}")
     public String updateProducter(String productName, Integer num){
         if(productName != null && !productName.isEmpty()){
             productMap.put(productName, (productMap.get(productName) == null ? 0: productMap.get(productName))-num);

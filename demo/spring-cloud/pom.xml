@@ -16,6 +16,7 @@
         <module>config_server</module>
         <module>config</module>
         <module>eureka</module>
+        <module>ribbon</module>
     </modules>
 
 
