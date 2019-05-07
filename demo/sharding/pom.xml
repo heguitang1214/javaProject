@@ -27,6 +27,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--没有这个jar包，事物会不生效-->
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-transaction-spring-boot-starter</artifactId>
