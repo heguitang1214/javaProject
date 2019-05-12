@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zero.product.mapper.ProductMapper">
-	<resultMap id="BaseResultMap" type="com.zero.core.entity.Product">
+<mapper namespace="com.tang.product.mapper.ProductMapper">
+	<resultMap id="BaseResultMap" type="com.tang.core.entity.Product">
 		<id column="product_id" property="productId" jdbcType="INTEGER" />
 		<result column="product_name" property="productName" jdbcType="VARCHAR" />
 		<result column="count" property="count" jdbcType="INTEGER" />
 	</resultMap>
-	<insert id="update" parameterType="com.zero.core.entity.Order">
+	<insert id="update" parameterType="com.tang.core.entity.Order">
 		update t_product set count=count-#{number,jdbcType=INTEGER}
 		 where 1=1 
 		   and product_id = #{productId,jdbcType=INTEGER}

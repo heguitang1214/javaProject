@@ -26,6 +26,7 @@
         <module>javaBasics</module>
         <module>tx_demo</module>
         <module>demo</module>
+        <module>case</module>
     </modules>
 
     <build>

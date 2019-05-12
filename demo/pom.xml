@@ -27,7 +27,6 @@
         <module>lockTest</module>
         <module>sharding</module>
         <module>im</module>
-        <module>hystrix</module>
         <module>ruleengine</module>
     </modules>
 

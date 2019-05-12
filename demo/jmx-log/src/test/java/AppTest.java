@@ -1,4 +1,4 @@
-package ai.yunxi.demo;
+package ai.tang.demo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
