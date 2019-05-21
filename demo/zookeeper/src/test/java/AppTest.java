@@ -1,5 +1,5 @@
-import com.zero.demo.controller.Payment;
-import com.zero.demo.controller.PaymentService;
+import com.tang.demo.controller.Payment;
+import com.tang.demo.controller.PaymentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

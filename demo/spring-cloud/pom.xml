@@ -17,6 +17,7 @@
         <module>config</module>
         <module>eureka</module>
         <module>ribbon</module>
+        <module>hystrix</module>
     </modules>
 
 

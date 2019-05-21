@@ -16,7 +16,7 @@
 		registration="replaceExisting" />
 
 	<bean id="personMBean"
-		class="ai.yunxi.demo.mbean.SpringPersonMBean">
+		class="com.tang.mbean.SpringPersonMBean">
 		<property name="name" value="TEst" />
 		<property name="age" value="21" />
 		<property name="address" value="beijing" />

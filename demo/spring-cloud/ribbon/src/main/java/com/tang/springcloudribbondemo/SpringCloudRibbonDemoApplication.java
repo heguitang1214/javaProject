@@ -1,5 +1,7 @@
 package com.tang.springcloudribbondemo;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -21,6 +23,7 @@ public class SpringCloudRibbonDemoApplication {
 		return new RestTemplate();
 	}
 
+	//修改restTempl的实现方式
 //	@Bean
 //	@LoadBalanced
 //	public RestTemplate restTemplate(){
@@ -40,4 +43,14 @@ public class SpringCloudRibbonDemoApplication {
 //                .retryOnConnectionFailure(true);
 //        return builder.build();
 //    }
+
+
+	//修改负载均衡算法
+	@Bean
+	public IRule rule(){
+		return new RandomRule(); // 随机规则
+	}
+
+
+
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tang.sharding.mapper.ProvinceMapper">
+
+    <insert id="save" parameterType="com.tang.sharding.model.Province">
+        INSERT INTO t_province(id, name) VALUES(#{id}, #{name});
+    </insert>
+
+</mapper>
