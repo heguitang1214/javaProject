@@ -26,7 +26,6 @@
         <module>delay_queue</module>
         <module>lockTest</module>
         <module>sharding</module>
-        <module>im</module>
         <module>ruleengine</module>
     </modules>
 
