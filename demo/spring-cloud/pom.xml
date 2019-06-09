@@ -14,10 +14,6 @@
     <modules>
         <module>config_client</module>
         <module>config_server</module>
-        <module>config</module>
-        <module>eureka</module>
-        <module>ribbon</module>
-        <module>hystrix</module>
     </modules>
 
 
