@@ -6,6 +6,9 @@ import java.util.concurrent.locks.Lock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 测试分布式锁ImproveLock
+ */
 public class OrderServiceImpl implements Runnable {
     private static OrderCodeGenerator ong = new OrderCodeGenerator();
 
@@ -16,7 +19,6 @@ public class OrderServiceImpl implements Runnable {
     private static CountDownLatch cdl = new CountDownLatch(NUM);
 
     // private static Lock lock = new ReentrantLock();
-
     private Lock lock = new ImproveLock();
 
     // 创建订单接口

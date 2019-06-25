@@ -13,26 +13,45 @@ import org.I0Itec.zkclient.serialize.SerializableSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * zk分布式锁
+ * 改进版：控制时序
+ */
 public class ImproveLock implements Lock {
     private static Logger logger = LoggerFactory.getLogger(ImproveLock.class);
 
-    private static final String ZOOKEEPER_IP_PORT = "47.93.194.11:2181";
+    private static final String ZOOKEEPER_IP_PORT = "192.168.56.101:2181";
     private static final String LOCK_PATH = "/LOCK";
 
     private ZkClient client = new ZkClient(ZOOKEEPER_IP_PORT, 1000, 1000, new SerializableSerializer());
 
     private CountDownLatch cdl;
 
-    private String beforePath;// 当前请求的节点前一个节点
-    private String currentPath;// 当前请求的节点
+    /**
+     * 当前请求的节点前一个节点
+     */
+    private String beforePath;
 
-    // 判断有没有LOCK目录，没有则创建
+    /**
+     * 当前请求的节点
+     */
+    private String currentPath;
+
+    /**
+     * 判断有没有LOCK目录，没有则创建
+     */
     public ImproveLock() {
         if (!this.client.exists(LOCK_PATH)) {
             this.client.createPersistent(LOCK_PATH);
         }
     }
 
+    /**
+     * 判断是否加锁成功
+     *
+     * @return 是否加锁成功
+     */
+    @Override
     public boolean tryLock() {
         // 如果currentPath为空则为第一次尝试加锁，第一次加锁赋值currentPath
         if (currentPath == null || currentPath.length() <= 0) {
@@ -44,9 +63,11 @@ public class ImproveLock implements Lock {
         // 获取所有临时节点并排序，临时节点名称为自增长的字符串如：0000000400
         List<String> childrens = this.client.getChildren(LOCK_PATH);
         Collections.sort(childrens);
-        if (currentPath.equals(LOCK_PATH + '/' + childrens.get(0))) {// 如果当前节点在所有节点中排名第一则获取锁成功
+        // 如果当前节点在所有节点中排名第一则获取锁成功
+        if (currentPath.equals(LOCK_PATH + '/' + childrens.get(0))) {
             return true;
-        } else {// 如果当前节点在所有节点中排名中不是排名第一，则获取前面的节点名称，并赋值给beforePath
+        } else {
+            // 如果当前节点在所有节点中排名中不是排名第一，则获取前面的节点名称，并赋值给beforePath
             int wz = Collections.binarySearch(childrens, currentPath.substring(6));
             beforePath = LOCK_PATH + '/' + childrens.get(wz - 1);
         }
@@ -54,11 +75,13 @@ public class ImproveLock implements Lock {
         return false;
     }
 
+    @Override
     public void unlock() {
         // 删除当前临时节点
         client.delete(currentPath);
     }
 
+    @Override
     public void lock() {
         if (!tryLock()) {
             waitForLock();
@@ -70,6 +93,7 @@ public class ImproveLock implements Lock {
 
     private void waitForLock() {
         IZkDataListener listener = new IZkDataListener() {
+            @Override
             public void handleDataDeleted(String dataPath) throws Exception {
                 logger.info(Thread.currentThread().getName() + ":捕获到DataDelete事件！---------------------------");
                 if (cdl != null) {
@@ -77,6 +101,7 @@ public class ImproveLock implements Lock {
                 }
             }
 
+            @Override
             public void handleDataChange(String dataPath, Object data) throws Exception {
 
             }
@@ -95,15 +120,17 @@ public class ImproveLock implements Lock {
         this.client.unsubscribeDataChanges(beforePath, listener);
     }
 
-    // ==========================================
+    @Override
     public void lockInterruptibly() throws InterruptedException {
 
     }
 
+    @Override
     public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
         return false;
     }
 
+    @Override
     public Condition newCondition() {
         return null;
     }

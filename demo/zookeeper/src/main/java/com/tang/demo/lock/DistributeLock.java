@@ -11,6 +11,10 @@ import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 分布式锁
+ * 独占锁
+ */
 public class DistributeLock implements Lock {
     private static Logger logger = LoggerFactory.getLogger(DistributeLock.class);
 
@@ -21,7 +25,10 @@ public class DistributeLock implements Lock {
 
     private CountDownLatch cdl = null;
 
-    // 实现阻塞式的加锁
+
+    /**
+     * 实现阻塞式的加锁
+     */
     @Override
     public void lock() {
         if (tryLock()) {
@@ -31,7 +38,10 @@ public class DistributeLock implements Lock {
         lock();
     }
 
-    // 阻塞时的实现
+
+    /**
+     * 阻塞时的实现
+     */
     private void waitForLock() {
         // 给节点加监听
         IZkDataListener listener = new IZkDataListener() {
@@ -61,7 +71,12 @@ public class DistributeLock implements Lock {
         client.unsubscribeDataChanges(LOCK_NODE, listener);
     }
 
-    // 实现非阻塞式的加锁
+
+    /**
+     * 实现非阻塞式的加锁
+     *
+     * @return 判断加锁是否成功
+     */
     @Override
     public boolean tryLock() {
         try {

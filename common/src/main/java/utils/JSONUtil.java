@@ -25,7 +25,7 @@ import java.util.*;
 @SuppressWarnings("all")
 public class JSONUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(JsonUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(JSONUtil.class);
 
     private static final String INCLUDE = "JSON_INCLUDE";
     private static final String EXCEPT = "JSON_EXCEPT";
@@ -187,7 +187,7 @@ public class JSONUtil {
         mapper.configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         mapper.configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         try {
-            if (StringUtils.isEmpty(jsonString)){
+            if (StringUtils.isEmpty(jsonString)) {
                 return null;
             }
             return mapper.readValue(jsonString, valueType);
@@ -311,7 +311,7 @@ public class JSONUtil {
         try {
             if (includeFields != null && includeFields.length > 0) {
                 objectMapper.setFilterProvider(new SimpleFilterProvider().addFilter(INCLUDE, SimpleBeanPropertyFilter.filterOutAllExcept(includeFields)));
-                objectMapper.addMixIn(dest.getClass(), JsonUtils.MyJsonInclude.class);
+                objectMapper.addMixIn(dest.getClass(), MyJsonInclude.class);
             }
 
             return objectMapper.writeValueAsString(dest);
@@ -328,7 +328,7 @@ public class JSONUtil {
             if (excludeFields != null && excludeFields.length > 0) {
                 objectMapper.setFilterProvider(new SimpleFilterProvider().addFilter(EXCEPT, SimpleBeanPropertyFilter.serializeAllExcept(excludeFields)));
 
-                objectMapper.addMixIn(dest.getClass(), JsonUtils.MyJsonExcept.class);
+                objectMapper.addMixIn(dest.getClass(), MyJsonExcept.class);
             }
 
             return objectMapper.writeValueAsString(dest);
@@ -360,21 +360,27 @@ public class JSONUtil {
 
     private static boolean compareJsonNode(JsonNode node1, JsonNode node2) {
         if (node1.isObject()) {
-            if (!node2.isObject()) return false;
-            if (!compareFieldNames(node1.fieldNames(), node2.fieldNames()))
+            if (!node2.isObject()) {
                 return false;
+            }
+            if (!compareFieldNames(node1.fieldNames(), node2.fieldNames())) {
+                return false;
+            }
             Iterator<Map.Entry<String, JsonNode>> fields1 = node2.fields();
             Map<String, JsonNode> fields2 = getFields(node1);
             boolean flag = true;
             while (fields1.hasNext()) {
                 Map.Entry<String, JsonNode> field1 = fields1.next();
                 JsonNode field2 = fields2.get(field1.getKey());
-                if (!compareJsonNode(field1.getValue(), field2))
+                if (!compareJsonNode(field1.getValue(), field2)) {
                     flag = false;
+                }
             }
             return flag;
         } else if (node1.isArray()) {
-            if (!node2.isArray()) return false;
+            if (!node2.isArray()) {
+                return false;
+            }
             return compareArrayNode(node1, node2);
         } else {
             return node1.toString().equals(node2.toString());
@@ -396,8 +402,9 @@ public class JSONUtil {
                     break;
                 }
             }
-            if (!flag)
+            if (!flag) {
                 return false;
+            }
         }
         return true;
     }
