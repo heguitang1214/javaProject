@@ -7,7 +7,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import java.util.Properties;
 /**
  * 产生消息
- *  有错误
+ *  有错误????
  */
 public class ProduceMessage {
     private static Properties props;
