@@ -6,6 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
+/**
+ * 自定义的序列化
+ */
 public class UserSerializer implements Serializer<User> {
     @Override
     public void configure(Map<String, ?> map, boolean b) {
@@ -16,8 +19,9 @@ public class UserSerializer implements Serializer<User> {
         int size = 0;
         byte[] serializedName = new byte[0];
 
-        if (user == null)
+        if (user == null) {
             return null;
+        }
 
         if (user.getName() != null) {
             try {

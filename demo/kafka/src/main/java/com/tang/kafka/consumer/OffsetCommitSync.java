@@ -19,7 +19,7 @@ public class OffsetCommitSync {
         props.put("group.id", "ConsumerGroup1");
         /* 关闭自动确认选项 */
         props.put("enable.auto.commit", false);
-        //props.put("auto.commit.interval.ms", "1000");
+        //props.put("auto.commit.interval.ms", "1000"); // 不需要设置自动提交的事件间隔
         props.put("session.timeout.ms", "30000");
         // 序列化类
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");

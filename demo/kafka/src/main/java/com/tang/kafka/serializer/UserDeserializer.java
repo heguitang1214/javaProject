@@ -7,6 +7,9 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
+/**
+ * 自定义的反序列化
+ */
 public class UserDeserializer implements Deserializer<User> {
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {

@@ -28,7 +28,7 @@ public class ConsumerThread implements Runnable {
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-        consumer = new KafkaConsumer<String, String>(props);
+        consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singletonList("Topic-03"));
     }
 

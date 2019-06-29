@@ -41,7 +41,8 @@ public class TopicsUtils {
 
         tu.describeTopic("Topic-03");
 
-//        System.out.println(Math.abs("ConsumerGroup22".hashCode()) % 50);
+        // 计算groupid的hashcode
+        System.out.println(Math.abs("ConsumerGroup22".hashCode()) % 50);
     }
 
     /**

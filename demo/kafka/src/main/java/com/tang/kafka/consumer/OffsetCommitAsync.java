@@ -18,13 +18,13 @@ public class OffsetCommitAsync {
         props.put("group.id", "ConsumerGroup1");
         /* 关闭自动确认选项 */
         props.put("enable.auto.commit", false);
-        props.put("auto.commit.interval.ms", "1000");
+        // props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");
         // 序列化类
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Arrays.asList(TOPIC_NAME));
 
 
@@ -37,6 +37,7 @@ public class OffsetCommitAsync {
             consumer.commitAsync(new OffsetCommitCallback() {
                 @Override
                 public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception e) {
+                    // 异步提交消息失败
                     if (e != null) {
                         // 重试策略
                         // 业务逻辑

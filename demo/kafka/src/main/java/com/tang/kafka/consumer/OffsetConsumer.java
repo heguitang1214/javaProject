@@ -28,15 +28,20 @@ public class OffsetConsumer {
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
         consumer.assign(Arrays.asList(new TopicPartition("Topic-06", 1)));
+        // 从头开始消费
         consumer.seekToBeginning(Arrays.asList(new TopicPartition("Topic-06", 1)));
+        // 从尾开始消费
+        //consumer.seekToEnd();
+        // 指定位置开始消费
         //consumer.seek(new TopicPartition("Topic-05", 1), 9);
 
         try {
             for (; ; ) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-                for (ConsumerRecord<String, String> record : records)
+                for (ConsumerRecord<String, String> record : records) {
                     System.out.printf("消费消息：topic=%s, partition=%d, offset=%d, key=%s, value=%s\n",
                             record.topic(), record.partition(), record.offset(), record.key(), record.value());
+                }
             }
         } finally {
             consumer.close();
