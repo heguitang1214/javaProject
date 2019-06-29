@@ -10,7 +10,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 public class TopicsUtils {
-    private static final String BROKER_URL = "192.168.56.101:9092,192.168.56.101:9093";
+    private static final String BROKER_URL = "192.168.56.101:9092,192.168.56.101:9093,192.168.56.101:9094";
     private AdminClient adminClient;
 
     public TopicsUtils() {
@@ -35,20 +35,31 @@ public class TopicsUtils {
     }
 
     public static void main(String[] args) {
-        //TopicsUtils tu = new TopicsUtils();
-        //tu.listTopics();
+        TopicsUtils tu = new TopicsUtils();
+        // 获取所有的Topic信息
+        tu.listTopics();
 
-        //tu.describeTopic("Topic-03");
-        System.out.println(Math.abs("ConsumerGroup22".hashCode()) % 50);
+        tu.describeTopic("Topic-03");
+
+//        System.out.println(Math.abs("ConsumerGroup22".hashCode()) % 50);
     }
 
+    /**
+     * 创建Topic主题
+     *
+     * @param topicName    主题
+     * @param partitionNum 分区数
+     * @param replicFactor 副本因子
+     */
     public void createTopic(String topicName, int partitionNum, short replicFactor) {
         NewTopic topic = new NewTopic(topicName, partitionNum, replicFactor);
+        // 创建返回【CreateTopicsResult】
         CreateTopicsResult result = adminClient.createTopics(Arrays.asList(topic));
         for (Map.Entry entry : result.values().entrySet()) {
             System.out.printf("%s, %s", entry.getKey(), entry.getValue());
         }
     }
+
 
     public void describeTopic(String topicName) {
         DescribeTopicsResult result = adminClient.describeTopics(Arrays.asList(topicName));

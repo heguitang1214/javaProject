@@ -9,20 +9,6 @@ import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.*;
 
-class ConsumerHandler implements Runnable {
-    private ConsumerRecord<String, String> record;
-
-    public ConsumerHandler(ConsumerRecord<String, String> consumerRecord) {
-        this.record = consumerRecord;
-    }
-
-    @Override
-    public void run() {
-        System.out.printf("topic=%s, partition=%d, offset=%d, key=%s, value=%s\n",
-                record.topic(), record.partition(), record.offset(), record.key(), record.value());
-    }
-}
-
 public class ConsumerThreadPool {
     private KafkaConsumer<String, String> consumer;
 
@@ -63,6 +49,20 @@ public class ConsumerThreadPool {
             for (ConsumerRecord<String, String> record : records) {
                 executor.submit(new ConsumerHandler(record));
             }
+        }
+    }
+
+    class ConsumerHandler implements Runnable {
+        private ConsumerRecord<String, String> record;
+
+        public ConsumerHandler(ConsumerRecord<String, String> consumerRecord) {
+            this.record = consumerRecord;
+        }
+
+        @Override
+        public void run() {
+            System.out.printf("topic=%s, partition=%d, offset=%d, key=%s, value=%s\n",
+                    record.topic(), record.partition(), record.offset(), record.key(), record.value());
         }
     }
 

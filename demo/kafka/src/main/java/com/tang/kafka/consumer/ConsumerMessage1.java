@@ -11,8 +11,7 @@ import java.util.Properties;
 /**
  * 消费消息
  */
-public class ConsumerMessage {
-    private static final String TOPIC_NAME = "Topic-05";
+public class ConsumerMessage1 {
 
     public static void main(String[] args) {
         Properties props = new Properties();
@@ -29,15 +28,16 @@ public class ConsumerMessage {
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
-        consumer.subscribe(Collections.singletonList(TOPIC_NAME));
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+        consumer.subscribe(Collections.singletonList("Topic-01"));
 
         try {
             for (; ; ) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-                for (ConsumerRecord<String, String> record : records)
+                for (ConsumerRecord<String, String> record : records) {
                     System.out.printf("消费消息：topic=%s, partition=%d, offset=%d, key=%s, value=%s\n",
                             record.topic(), record.partition(), record.offset(), record.key(), record.value());
+                }
             }
         } finally {
             consumer.close();

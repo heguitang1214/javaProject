@@ -5,7 +5,10 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Properties;
-
+/**
+ * 产生消息
+ *  有错误
+ */
 public class ProduceMessage {
     private static Properties props;
     private static KafkaProducer<String, String> producer;
