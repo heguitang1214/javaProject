@@ -36,7 +36,8 @@ public class OffsetCommitSync {
                         record.topic(), record.partition(), record.offset(), record.key(), record.value());
 
                 try {
-                    //consumer.commitSync();
+                    // 注释这一段，就代表不提交偏移量，消费者只进行消费，每次运行都会【重复消费消息】。
+                    consumer.commitSync();
                 } catch (CommitFailedException e) {
                     System.out.println(e.getMessage());
                 }

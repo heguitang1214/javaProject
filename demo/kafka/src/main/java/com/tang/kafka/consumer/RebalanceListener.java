@@ -6,6 +6,9 @@ import org.apache.kafka.common.TopicPartition;
 import java.time.Duration;
 import java.util.*;
 
+/**
+ * 监控分区再均衡
+ */
 public class RebalanceListener {
     private static final String TOPIC_NAME = "Topic-05";
 
@@ -14,7 +17,7 @@ public class RebalanceListener {
     static KafkaConsumer<String, String> consumer;
 
     private static class CustomerRebalancer implements ConsumerRebalanceListener {
-        /*
+        /**
          * 再均衡开始之前和消费者停止读取消息之后被调用
          * 如果在这里提交偏移量，下一个接管分区的消费者就知道该从哪里开始读取了
          */
@@ -26,7 +29,7 @@ public class RebalanceListener {
             consumer.commitSync(currentOffsets);
         }
 
-        /*
+        /**
          * 在重新分配分区之后和新的消费者开始读取消息之前被调用
          */
         @Override
