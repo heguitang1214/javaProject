@@ -48,6 +48,63 @@
             <!--<version>2.1.0</version>-->
         <!--</dependency>-->
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.12</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-api</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-transforms</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jmxtrans/jmxtrans-core -->
+        <dependency>
+            <groupId>org.jmxtrans</groupId>
+            <artifactId>jmxtrans-core</artifactId>
+            <version>270</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jmxtrans/jmxtrans-output-core -->
+        <dependency>
+            <groupId>org.jmxtrans</groupId>
+            <artifactId>jmxtrans-output-core</artifactId>
+            <version>270</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jmxtrans</groupId>
+            <artifactId>jmxtrans-output-influxdb</artifactId>
+            <version>270</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-log4j-appender</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

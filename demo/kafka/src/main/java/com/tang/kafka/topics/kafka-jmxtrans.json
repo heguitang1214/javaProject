@@ -1,0 +1,259 @@
+{
+  "servers": [
+    {
+      "port": "9999",
+      "host": "192.168.56.101",
+      "queries": [
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_1"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec",
+          "resultAlias": "TopicMetrics.BytesOutPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_1"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec",
+          "resultAlias": "TopicMetrics.BytesInPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_1"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec",
+          "resultAlias": "TopicMetrics.MessagesInPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_1"
+            }
+          ],
+          "obj": "java.lang:type=Memory",
+          "resultAlias": "Memory",
+          "attr": [
+            "HeapMemoryUsage",
+            "NonHeapMemoryUsage"
+          ]
+        }
+      ],
+      "numQueryThreads": 4
+    },
+    {
+      "port": "9998",
+      "host": "192.168.56.101",
+      "queries": [
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_2"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec",
+          "resultAlias": "TopicMetrics.BytesOutPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_2"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec",
+          "resultAlias": "TopicMetrics.BytesInPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_2"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec",
+          "resultAlias": "TopicMetrics.MessagesInPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_2"
+            }
+          ],
+          "obj": "java.lang:type=Memory",
+          "resultAlias": "Memory",
+          "attr": [
+            "HeapMemoryUsage",
+            "NonHeapMemoryUsage"
+          ]
+        }
+      ],
+      "numQueryThreads": 4
+    },
+    {
+      "port": "9997",
+      "host": "192.168.56.101",
+      "queries": [
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_3"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec",
+          "resultAlias": "TopicMetrics.BytesOutPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_3"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec",
+          "resultAlias": "TopicMetrics.BytesInPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_3"
+            }
+          ],
+          "obj": "kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec",
+          "resultAlias": "TopicMetrics.MessagesInPerSec",
+          "attr": [
+            "Count",
+            "OneMinuteRate",
+            "FiveMinuteRate",
+            "FifteenMinuteRate"
+          ]
+        },
+        {
+          "outputWriters": [
+            {
+              "@class": "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+              "url": "http://localhost:8086/",
+              "username": "root",
+              "password": "123456",
+              "database": "jmxdb",
+              "rootPrefix": "kafka_3"
+            }
+          ],
+          "obj": "java.lang:type=Memory",
+          "resultAlias": "Memory",
+          "attr": [
+            "HeapMemoryUsage",
+            "NonHeapMemoryUsage"
+          ]
+        }
+      ],
+      "numQueryThreads": 4
+    }
+  ]
+}
