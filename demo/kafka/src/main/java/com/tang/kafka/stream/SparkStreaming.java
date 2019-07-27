@@ -21,8 +21,13 @@ public class SparkStreaming {
 
     private static final String topic = "my_topic02";
 
+
+
+
     public static void main(String[] args) {
-        //
+        //初始化spark上下文
+//        JavaStreamingContext sc = SparkUtil.getJavaStreamingContext("realtime-stat","local[2]",
+//                null, Durations.seconds(1));
 
         Set<String> topicsSet = new HashSet<>(Arrays.asList(topic));
 
