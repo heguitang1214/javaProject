@@ -3,7 +3,7 @@ package com.tang.entry;
 /**
  * 用户实体
  */
-public class User {
+public class UserInfo {
 
     private Integer id;
     private String userName;

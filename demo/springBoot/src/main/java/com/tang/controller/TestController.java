@@ -1,4 +1,4 @@
-package com.tang.hystrix.controller;
+package com.tang.controller;
 
 import com.tang.entry.Person;
 import org.springframework.beans.factory.annotation.Autowired;

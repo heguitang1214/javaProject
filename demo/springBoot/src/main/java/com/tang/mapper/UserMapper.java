@@ -1,11 +1,11 @@
 package com.tang.mapper;
 
-import com.tang.entry.User;
+import com.tang.entry.UserInfo;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface UserMapper {
 
-    User getUserByName(String userName);
+    UserInfo getUserByName(String userName);
 
 }
