@@ -1,13 +1,12 @@
-package datastructure.seqlist;
+package algorithm.linkedlist;
 
 /**
- * 顺序表顶级接口
+ * 链表顶级接口
  * @author Tang
  */
-public interface ISeqList<T> {
-
+public interface ILinkedList<T> {
     /**
-     *判断链表是否为空
+     * 判断链表是否为空
      */
     boolean isEmpty();
 
@@ -44,11 +43,6 @@ public interface ISeqList<T> {
     /**
      * 根据data移除结点
      */
-    boolean remove(T data);
-
-    /**
-     * 根据data移除所有结点
-     */
     boolean removeAll(T data);
 
     /**
@@ -61,18 +55,10 @@ public interface ISeqList<T> {
      */
     boolean contains(T data);
 
-    /**
-     * 根据值查询下标
-     */
-    int indexOf(T data);
-
-    /**
-     * 根据data值查询最后一个出现在顺序表中的下标
-     */
-    int lastIndexOf(T data);
 
     /**
      * 输出格式
      */
     String toString();
+
 }

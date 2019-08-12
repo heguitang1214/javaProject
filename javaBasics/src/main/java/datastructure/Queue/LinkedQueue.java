@@ -2,7 +2,8 @@ package datastructure.Queue;
 
 
 
-import datastructure.linkedList.singleLinked.Node;
+
+import algorithm.linkedlist.single.Node;
 
 import java.io.Serializable;
 import java.util.*;

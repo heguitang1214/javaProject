@@ -1,9 +1,9 @@
-package datastructure.seqlist;
+package algorithm.seqlist;
 
 /**
  * 顺序表的实现
  *
- * @Author Tang
+ * @author Tang
  */
 public class SeqList<T> implements ISeqList<T> {
 
@@ -11,10 +11,16 @@ public class SeqList<T> implements ISeqList<T> {
      * 数组声明,用于存储元素
      */
     private Object[] table;
+
     /**
      * 顺序表的大小
      */
     private int length;
+
+    /**
+     * 数组默认大小
+     */
+    private static int capacity = 10;
 
     public SeqList(int capacity) {
         //申请数组存储空间,元素初始化为null
@@ -26,7 +32,7 @@ public class SeqList<T> implements ISeqList<T> {
      * 默认大小为64
      */
     public SeqList() {
-        this(64);
+        this(capacity);
     }
 
     /**
@@ -78,7 +84,6 @@ public class SeqList<T> implements ISeqList<T> {
         if (index < 0) {
             index = 0;
         }
-
         //插入下标的容错判断,插入在最后面
         if (index > this.length) {
             index = this.length;
@@ -88,9 +93,8 @@ public class SeqList<T> implements ISeqList<T> {
         if (this.length == table.length) {
             //把原数组赋值给临时数组
             Object[] temp = this.table;
-
-            //对原来的数组进行成倍扩容,并把原数组的元素复制到新数组
-            this.table = new Object[temp.length * 2];
+            //对原来的数组进行1.5扩容,并把原数组的元素复制到新数组
+            this.table = new Object[temp.length + temp.length >> 1];
 
             //先把原数组下标从0到index-1(即插入位置的前一个位置)复制到新数组
             for (int i = 0; i < index; i++) {
@@ -111,6 +115,41 @@ public class SeqList<T> implements ISeqList<T> {
         return true;
     }
 
+    public boolean add1(int index, T data) {
+        if (data == null) {
+            return false;
+        }
+
+        //插入下标的容错判断,插入在最前面
+        if (index < 0) {
+            index = 0;
+        }
+        //插入下标的容错判断,插入在最后面
+        if (index > this.length) {
+            index = this.length;
+        }
+
+        //判断内部的数组是否已满
+        if (this.length == table.length) {
+            Object[] temp = new Object[this.table.length + this.table.length >> 1];
+            System.arraycopy(this.table, 0, temp, 0, this.length);
+            this.table = temp;
+        }
+
+        // index后面的元素后移：从原数组的最后一个元素开始直到index位置,都往后一个位置，
+        // 最终腾出来的位置就是新插入元素的位置了
+        for (int j = this.length - 1; j >= index; j--) {
+            this.table[j + 1] = this.table[j];
+        }
+        //插入新值
+        this.table[index] = data;
+        //长度加一
+        this.length++;
+        //插入成功
+        return true;
+    }
+
+
     /**
      * 在尾部插入元素
      *
@@ -119,6 +158,7 @@ public class SeqList<T> implements ISeqList<T> {
      */
     @Override
     public boolean add(T data) {
+        // 下一个元素的index就是当前元素的产的长度，例如：当前集合长度为3，添加第四个元素的时候，下标就为3
         return add(this.length, data);
     }
 
@@ -156,9 +196,10 @@ public class SeqList<T> implements ISeqList<T> {
      */
     @Override
     public boolean remove(T data) {
-        if (this.length != 0 && data != null)
+        if (this.length != 0 && data != null) {
             //删除的时候，会返回当前删除了的数据，当前删除的数据不为空，就返回true
             return this.remove(this.indexOf(data)) != null;
+        }
         return false;
     }
 
@@ -170,12 +211,14 @@ public class SeqList<T> implements ISeqList<T> {
      */
     @Override
     public int indexOf(T data) {
-        if (data != null)
+        if (data != null) {
             for (int i = 0; i < this.length; i++) {
                 //找到相等的数据，就返回数据对应的下标
-                if (this.table[i].equals(data))
+                if (this.table[i].equals(data)) {
                     return i;
+                }
             }
+        }
         return -1;
     }
 
@@ -187,10 +230,13 @@ public class SeqList<T> implements ISeqList<T> {
      */
     @Override
     public int lastIndexOf(T data) {
-        if (data != null)
-            for (int i = this.length - 1; i >= 0; i--)
-                if (data.equals(this.table[i]))
+        if (data != null) {
+            for (int i = this.length - 1; i >= 0; i--) {
+                if (data.equals(this.table[i])) {
                     return i;
+                }
+            }
+        }
         return -1;
     }
 
@@ -201,6 +247,7 @@ public class SeqList<T> implements ISeqList<T> {
      * @param data 需要删除的数据
      * @return 是否删除成功
      */
+    // TODO: 2019/8/12 统一删除策略
     @Override
     public boolean removeAll(T data) {
         boolean done = false;
@@ -209,10 +256,12 @@ public class SeqList<T> implements ISeqList<T> {
             while (i < this.length) {
                 //找出数据相同的选项
                 if (data.equals(this.table[i])) {
-                    this.remove(i);//根据下标删除
+                    //根据下标删除
+                    this.remove(i);
                     done = true;
                 } else {
-                    i++;//继续查找
+                    //继续查找
+                    i++;
                 }
             }
         }
@@ -226,13 +275,11 @@ public class SeqList<T> implements ISeqList<T> {
      * @param array 初始化的数组
      */
     public SeqList(T[] array) {
-
         if (array == null) {
-            throw new NullPointerException("array can\'t be empty!");
+            throw new NullPointerException("传入参数数组不能为空！");
         }
         //创建对应容量的数组
         this.table = new Object[array.length];
-
         for (int i = 0; i < array.length; i++) {
             this.table[i] = array[i];
         }
@@ -264,10 +311,12 @@ public class SeqList<T> implements ISeqList<T> {
      * 清空顺序表
      * 这里的清空并没有真正的清空数据，
      * 只是这些保存在顺序表中的数据你获取不到，
-     * 所以和情空是一样的效果。
+     * 所以和清空是一样的效果。
      */
     @Override
     public void clear() {
+        // 清空数组
+//        this.table = new Object[Math.abs(capacity)];
         this.length = 0;
     }
 
@@ -275,22 +324,26 @@ public class SeqList<T> implements ISeqList<T> {
     /**
      * 判断两个顺序表是否相等
      *
-     * @param obj
-     * @return
+     * @param obj 数据
+     * @return 是否相等
      */
+    @Override
     public boolean equals(Object obj) {
         //如果内存地址相当,那么两个顺序肯定相等
-        if (this == obj)
+        if (this == obj) {
             return true;
+        }
 
         //判断是否属于同种类型对象
         if (obj instanceof SeqList) {
             //强制转换成顺序表
             SeqList<T> list = (SeqList<T>) obj;
-            for (int i = 0; i < this.length(); i++)
+            for (int i = 0; i < this.length(); i++) {
                 //比较每个值是否相当
-                if (!(this.get(i).equals(list.get(i))))
+                if (!(this.get(i).equals(list.get(i)))) {
                     return false;
+                }
+            }
             return true;
         }
         return false;
@@ -300,8 +353,8 @@ public class SeqList<T> implements ISeqList<T> {
     /**
      * 查询是否包含某个数据
      *
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 是否包含某个数据
      */
     @Override
     public boolean contains(T data) {
@@ -315,12 +368,44 @@ public class SeqList<T> implements ISeqList<T> {
      */
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder("[");
+        StringBuilder sb = new StringBuilder("[");
         if (this.length != 0) {
-            for (int i = 0; i < this.length - 1; i++)
-                str.append(this.table[i].toString()).append(", ");
-            str.append(this.table[this.length - 1].toString());
+            for (int i = 0; i < this.length - 1; i++) {
+                sb.append(this.table[i].toString()).append(", ");
+            }
+            // 最后一个元素
+            sb.append(this.table[this.length - 1].toString());
         }
-        return str + "]";
+        return sb.append("]").append("\n").toString();
     }
+
+
+    public static void main(String[] args) {
+
+        SeqList<String> seqList = new SeqList<>();
+        seqList.add("aaaa");
+        seqList.add("bbbb");
+        seqList.add("aaaa");
+        System.out.println(seqList.length());
+        System.out.println(seqList.toString());
+
+
+        seqList.removeAll("aaaa");
+        System.out.println(seqList.length());
+        System.out.println(seqList.toString());
+
+        seqList.clear();
+        seqList.add("1111");
+        seqList.add("3333");
+        System.out.println(seqList.length());
+        System.out.println(seqList.toString());
+
+        seqList.clear();
+        seqList.add1(0, "D");
+        seqList.add1(1, "A");
+        System.out.println(seqList.length());
+        System.out.println(seqList.toString());
+    }
+
+
 }

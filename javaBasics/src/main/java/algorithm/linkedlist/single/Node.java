@@ -1,4 +1,4 @@
-package datastructure.linkedList.singleLinked;
+package algorithm.linkedlist.single;
 
 /**
  * 单向链表节点

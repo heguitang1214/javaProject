@@ -1,7 +1,8 @@
 package datastructure.Stack;
 
 
-import datastructure.linkedList.singleLinked.SingleLinkedList;
+
+import algorithm.linkedlist.single.SingleLinkedList;
 
 import java.io.Serializable;
 
