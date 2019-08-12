@@ -61,16 +61,16 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
     public HeadSingleLinkedList(HeadSingleLinkedList<T> list) {
         this();
         if (list != null && list.headNode.next != null) {
-            // todo
-//            this.headNode.next = new Node(list.headNode.data);
-
             Node<T> p = list.headNode.next;
-            this.headNode.next = p;
+//            this.headNode.next = p;
 //            rear = p;
-            rear = this.headNode.next;
             while (p != null) {
                 rear.next = new Node<>(p.data);
                 rear = rear.next;
+                // 如果加上注释的两句代码，就会出现死循环
+                // 问题出现在rear.next = new Node<>(p.data); 和 p = p.next;上
+                // 尾指针指向节点p，然后创建的新节点还是使用的p的数据(p1)，其实也就是节点p，
+                // 所以，在p.next就是指向自己p(p1)，即：单个节点的无限循环
                 p = p.next;
             }
         }
@@ -80,7 +80,7 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
     /**
      * 判断链表是否为空
      *
-     * @return
+     * @return 链表是否为空
      */
     @Override
     public boolean isEmpty() {
@@ -102,11 +102,10 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
      * 根据index索引获取值
      *
      * @param index 下标值起始值为0
-     * @return
+     * @return 索引对应的数据
      */
     @Override
     public T get(int index) {
-
         if (index >= 0) {
             int j = 0;
             Node<T> pre = this.headNode.next;
@@ -119,7 +118,6 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
             if (pre != null) {
                 return pre.data;
             }
-
         }
         return null;
     }
@@ -128,12 +126,11 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
      * 根据索引替换对应结点的data
      *
      * @param index 下标从0开始
-     * @param data
+     * @param data  需要替换的数据
      * @return 返回旧值
      */
     @Override
     public T set(int index, T data) {
-
         if (index >= 0 && data != null) {
             Node<T> pre = this.headNode.next;
             int j = 0;
@@ -144,10 +141,10 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
 
             if (pre != null) {
                 T oldData = pre.data;
-                pre.data = data;//设置新值
+                //设置新值，直接替换节点的数据，指向不需要改变
+                pre.data = data;
                 return oldData;
             }
-
         }
         return null;
     }
@@ -159,18 +156,17 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
      * 3.末尾插入
      *
      * @param index 该值从0开始,如传4就代表插入在第5个位置
-     * @param data
-     * @return
+     * @param data  需要添加的数据
+     * @return 是否添加成功
      */
     @Override
     public boolean add(int index, T data) {
-
         if (data == null) {
             throw new NullPointerException("data can\'t be empty!");
         }
-
-        if (index < 0)
+        if (index < 0) {
             throw new NullPointerException("index can\'t less than 0");
+        }
 
         //无需区分位置操作,中间/头部/尾部插入
         int j = 0;
@@ -180,30 +176,30 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
             j++;
         }
 
-        //将新插入的结点的后继指针指向pre.next
-        Node<T> q = new Node<T>(data, pre.next);
+        //将新插入的结点的后继指针指向pre.next，pre就是index前一位的节点
+        Node<T> q = new Node<>(data, pre.next);
         //更改指针指向
         pre.next = q;
 
-        //如果是未指针
-        if (pre == this.rear)
+        //如果是尾指针，就需要移动尾指针rear的指向
+        if (pre == this.rear) {
             this.rear = q;
-
+        }
         return true;
     }
 
     /**
      * 尾部插入
      *
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 是否插入成功
      */
     @Override
     public boolean add(T data) {
         if (data == null) {
             throw new NullPointerException("data can\'t be empty!");
         }
-        this.rear.next = new Node<T>(data);
+        this.rear.next = new Node<>(data);
         //更新末尾指针的指向
         this.rear = this.rear.next;
         return true;
@@ -212,8 +208,8 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
     /**
      * 根据索引删除结点
      *
-     * @param index
-     * @return
+     * @param index 索引位置
+     * @return 删除的数据
      */
     @Override
     public T remove(int index) {
@@ -221,7 +217,6 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
 
         //包含了头删除或中间删除或尾部删除的情况
         if (index >= 0) {
-
             Node<T> pre = this.headNode;
             int j = 0;
             //查找需要删除位置的前一个结点
@@ -243,7 +238,6 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
                 //更改指针指向
                 pre.next = r.next;
             }
-
         }
         return old;
     }
@@ -251,12 +245,11 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
     /**
      * 根据data移除所有数据相同的结点
      *
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 是否移除成功
      */
     @Override
     public boolean removeAll(T data) {
-
         boolean isRemove = false;
 
         if (data != null) {
@@ -296,12 +289,11 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
     /**
      * 判断是否包含某个值
      *
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 是否包含某个值
      */
     @Override
     public boolean contains(T data) {
-
         if (data != null) {
             Node<T> pre = this.headNode.next;
             while (pre != null) {
@@ -317,16 +309,19 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
     /**
      * 从末尾连接两个链表
      *
-     * @param list
+     * @param list 链表
      */
     public void concat(HeadSingleLinkedList<T> list) {
         if (this.headNode.next == null) {
             this.headNode.next = list.headNode.next;
         } else {
-            Node<T> pre = this.headNode.next;
-            while (pre.next != null)
-                pre = pre.next;
-            pre.next = list.headNode.next;
+//            Node<T> pre = this.headNode.next;
+//            while (pre.next != null) {
+//                pre = pre.next;
+//            }
+//            pre.next = list.headNode.next;
+
+            this.rear.next = list.headNode.next;
             //更新尾部指针指向
             this.rear = list.rear;
         }
@@ -348,8 +343,7 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
 
     public static void main(String[] args) {
 
-
-        HeadSingleLinkedList linkedList = new HeadSingleLinkedList();
+        HeadSingleLinkedList<String> linkedList = new HeadSingleLinkedList<>();
         linkedList.add("1111");
         linkedList.add("2222");
         linkedList.add("3333");
@@ -358,9 +352,9 @@ public class HeadSingleLinkedList<T> implements ILinkedList<T> {
         System.out.println(list1.toString());
 
 
-
         String[] letters = {"A", "B", "C", "D", "E", "F"};
         HeadSingleLinkedList<String> list = new HeadSingleLinkedList<>(letters);
+
 
         System.out.println("list.get(3)->" + list.get(3));
         System.out.println("list:" + list.toString());
