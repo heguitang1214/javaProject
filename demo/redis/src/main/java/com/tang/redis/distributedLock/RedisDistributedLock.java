@@ -26,6 +26,7 @@ public class RedisDistributedLock implements Lock {
 
     /**
      * 锁信息的上下文，保存当前锁的持有人id
+     * 自己记录线程的唯一标识，不需要当作参数传递进来
      */
     private ThreadLocal<String> localContext = new ThreadLocal<>();
 
