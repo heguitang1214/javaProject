@@ -13,7 +13,7 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
     /**
      * 不带数据头结点
      */
-    protected Node<T> head;
+    private Node<T> head;
 
     /**
      * 指向尾部的指针
@@ -23,12 +23,16 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
 
     public CircularHeadLinkedList() {
         //初始化头结点与尾指针
-        this.head = new Node<T>(null);
+        this.head = new Node<>(null);
         this.head.next = head;
         this.tail = head;
     }
 
-
+    /**
+     * 将数组转换成循环单链表
+     *
+     * @param array 数组
+     */
     public CircularHeadLinkedList(T[] array) {
         this();
         if (array != null && array.length > 0) {
@@ -51,36 +55,35 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
 
     @Override
     public int length() {
-
         int length = 0;
         Node<T> p = this.head.next;
         while (p != head) {
             p = p.next;
             length++;
         }
-
         return length;
     }
 
     @Override
     public T get(int index) {
-
         if (index >= 0) {
             int j = 0;
             Node<T> pre = this.head.next;
-            while (pre != null && j < index) {
+            // 当pre是空头结点的时候，对应的Node<T>不为null
+            // 如果是pre != null，则为循环取值，index 大于链表size也能拿到值
+            while (pre != head && j < index) {
                 j++;
                 pre = pre.next;
             }
-            if (pre != null)
+            if (pre != null) {
                 return pre.data;
+            }
         }
         return null;
     }
 
     @Override
     public T set(int index, T data) {
-
         if (data == null) {
             return null;
         }
@@ -93,55 +96,56 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
                 j++;
                 p = p.next;
             }
-
-            //如果不是头结点
+            //如果不是头结点，那就是替换数据，否则，就是尾部插入数据
             if (p != head) {
                 T old = p.data;
                 p.data = data;
-
                 return old;
             }
         }
         return null;
     }
 
+
     @Override
     public boolean add(int index, T data) {
         int size = length();
-        if (data == null || index < 0 || index >= size)
+        if (data == null || index < 0 || index >= size) {
             return false;
+        }
 
         int j = 0;
         Node<T> p = this.head;
-        //寻找插入点的位置的前一个结点
+        // 寻找插入点的位置的前一个结点，假设index=3，那么找的下标就是2，也就是前一个节点
         while (p.next != head && j < index) {
             p = p.next;
             j++;
         }
 
-        //创建新结点,如果index=3,那么插入的位置就是第4个位置
+        // 创建新结点,如果index=3,那么插入的位置就是第4个位置
+        // 创建一个新节点q，新节点q的下一个节点指向p.next
         Node<T> q = new Node<>(data, p.next);
         p.next = q;
-        //更新尾部指向
+        // 更新尾部指向
         if (p == tail) {
             this.tail = q;
         }
         return true;
     }
 
+
     @Override
     public boolean add(T data) {
         if (data == null) {
             return false;
         }
-
         Node<T> q = new Node<>(data, this.tail.next);
         this.tail.next = q;
-        //更新尾部指向
+        // 更新尾部指向
         this.tail = q;
-
         return true;
     }
+
 
     @Override
     public T remove(int index) {
@@ -153,22 +157,21 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
         int j = 0;
         Node<T> p = this.head.next;
 
+        // 找到当前需要删除的节点的前一个节点
         while (p != head && j < index) {
             j++;
             p = p.next;
         }
 
+        // 首先获取的节点就是头结点的下一个节点，如果p == head，说明是一个空链表
         if (p != head) {
             T old = p.next.data;
-
             if (tail == p.next) {
                 tail = p;
             }
             p.next = p.next.next;
-
             return old;
         }
-
         return null;
     }
 
@@ -176,9 +179,8 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
     public boolean removeAll(T data) {
         boolean isRemove = false;
         if (data == null) {
-            return isRemove;
+            return false;
         }
-
         //用于记录要删除结点的前一个结点
         Node<T> front = this.head;
         //当前遍历的结点
@@ -199,8 +201,6 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
                 pre = pre.next;
             }
         }
-
-
         return isRemove;
     }
 
@@ -217,29 +217,27 @@ public class CircularHeadLinkedList<T> implements ILinkedList<T> {
         }
 
         Node<T> p = this.head.next;
-
         while (p != head) {
             if (data.equals(p.data)) {
                 return true;
             }
-
             p = p.next;
         }
-
         return false;
     }
 
     @Override
     public String toString() {
-        String str = "(";
+        StringBuilder sb = new StringBuilder("循环单链表(");
         Node<T> p = this.head.next;
         while (p != head) {
-            str += p.data.toString();
+            sb.append(p.data.toString());
             p = p.next;
-            if (p != head)
-                str += ", ";
+            if (p != head) {
+                sb.append(", ");
+            }
         }
-        return str + ")";
+        return sb.append(")").toString();
     }
 
     public static void main(String[] args) {
