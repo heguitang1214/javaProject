@@ -1,4 +1,5 @@
 # 算法【algorithm】
+    参考地址：https://github.com/shinezejian/javaStructures
 
 ## 数组【seqlist】
 #### 顺序表

@@ -8,19 +8,19 @@ import datastructure.linkedList.ILinkedList;
  *
  * @param <T> 数据
  */
-public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
+public class HeadDoubleLinkedList<T> implements ILinkedList<T> {
 
     /**
      * 不带数据的头结点
      */
-    protected DNode<T> head;
+    private DNode<T> head;
 
     /**
      * 指向尾部的指针
      */
     private DNode<T> tail;
 
-    private HeadDoubleILinkedList() {
+    private HeadDoubleLinkedList() {
         //初始化头结点
         this.head = this.tail = new DNode<>();
     }
@@ -31,7 +31,7 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
      *
      * @param array 数组
      */
-    public HeadDoubleILinkedList(T[] array) {
+    public HeadDoubleLinkedList(T[] array) {
         this();
         if (array != null && array.length > 0) {
             this.head.next = new DNode<>(array[0]);
@@ -104,15 +104,15 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
     /**
      * 插入结点
      *
-     * @param index
-     * @param data
-     * @return
+     * @param index 下标
+     * @param data  数据
+     * @return 是否成功
      */
     @Override
     public boolean add(int index, T data) {
-        if (index < 0 || data == null)
+        if (index < 0 || data == null) {
             throw new NullPointerException("index < 0 || data == null");
-
+        }
         int j = 0;
         DNode<T> front = this.head;
         //查找要插入结点位置的前一个结点
@@ -122,7 +122,7 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
         }
 
         //创建需要插入的结点,并让其前继指针指向front,后继指针指向front.next
-        DNode<T> q = new DNode<T>(data, front, front.next);
+        DNode<T> q = new DNode<>(data, front, front.next);
 
         //空双链表插入,需要确保front.next不为空
         if (front.next != null) {
@@ -136,22 +136,22 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
         if (front == this.tail) {
             this.tail = q;
         }
-
         return true;
     }
 
     /**
      * 尾部添加
      *
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 是否添加成功
      */
     @Override
     public boolean add(T data) {
-        if (data == null)
+        if (data == null) {
             return false;
+        }
         //创建新结点,并把其前继指针指向tail
-        DNode<T> q = new DNode<T>(data, tail, null);
+        DNode<T> q = new DNode<>(data, tail, null);
         tail.next = q;
         //更新尾部结点
         this.tail = q;
@@ -175,7 +175,7 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
         }
         DNode<T> p = this.head;
         int j = 0;
-        if (p == null){
+        if (p == null) {
             return null;
         }
         // 头删除/尾删除/中间删除,查找需要删除的结点(要删除的当前结点因此i<=index)
@@ -204,40 +204,38 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
      * 2.中间删除
      * 3.尾部删除,更新tail指向
      *
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 是否成功
      */
     @Override
     public boolean removeAll(T data) {
-
         boolean isRemove = false;
 
-        if (data == null || isEmpty())
-            return isRemove;
-
-        //注意这里的起点,如果起点为this.head,那么情况区别如同前面的根据index的删除实现
+        if (data == null || isEmpty()) {
+            return false;
+        }
+        // 注意这里的起点,如果起点为this.head,那么情况区别如同前面的根据index的删除实现
         DNode<T> p = this.head.next;
 
-        //头删除/尾删除/中间删除(size>1),查找所有需要删除的结点
+        // 头删除/尾删除/中间删除(size>1),查找所有需要删除的结点
         while (p != null) {
-
             if (data.equals(p.data)) {
                 if (p == this.tail) {
-                    //如果是尾结点
-                    this.tail = p.prev;//更新未结点的指向
+                    // 如果是尾结点，更新未结点的指向
+                    this.tail = p.prev;
                     p.prev = null;
                     this.tail.next = null;
                 } else {
-                    //如果是在中间删除,更新前继和后继指针指向
+                    // 如果是在中间删除,更新前继和后继指针指向
                     p.prev.next = p.next;
                     p.next.prev = p.prev;
                 }
                 isRemove = true;
-                p = p.next;//继续查找
+                // 继续查找
+                p = p.next;
             } else {
                 p = p.next;
             }
-
         }
         return isRemove;
     }
@@ -266,7 +264,6 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
                 p = p.next;
             }
         }
-
         return false;
     }
 
@@ -277,7 +274,7 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
         while (pre != null) {
             sb.append(pre.data);
             pre = pre.next;
-            if (pre != null){
+            if (pre != null) {
                 sb.append(", ");
             }
         }
@@ -288,24 +285,24 @@ public class HeadDoubleILinkedList<T> implements ILinkedList<T> {
 
         String[] letters = {"A", "B", "C", "D", "Z", "E", "F"};
 //        String[] letters={"A"};
-        HeadDoubleILinkedList<String> list = new HeadDoubleILinkedList<>(letters);
+        HeadDoubleLinkedList<String> list = new HeadDoubleLinkedList<>(letters);
 
-//        System.out.println("list.get(3)->" + list.get(3));
-//        System.out.println("list:" + list.toString());
-//
-//        System.out.println("list.add(4,Y)—>" + list.add(0, "Y"));
-//        System.out.println("list:" + list.toString());
-//        System.out.println("list.add(Z)—>" + list.add("Z"));
-//        System.out.println("list:" + list.toString());
-//
-//
-//        System.out.println("list.contains(Z)->" + list.contains("Z"));
-//        System.out.println("list.set(4,P)-->" + list.set(4, "P"));
-//        System.out.println("list:" + list.toString());
+        System.out.println("list.get(3)->" + list.get(3));
+        System.out.println("list:" + list.toString());
+
+        System.out.println("list.add(4,Y)—>" + list.add(0, "Y"));
+        System.out.println("list:" + list.toString());
+        System.out.println("list.add(Z)—>" + list.add("Z"));
+        System.out.println("list:" + list.toString());
+
+
+        System.out.println("list.contains(Z)->" + list.contains("Z"));
+        System.out.println("list.set(4,P)-->" + list.set(4, "P"));
+        System.out.println("list:" + list.toString());
 
 
         System.out.println("list.remove(6)-->" + list.remove(6));
-//        System.out.println("list.remove(Z)->"+list.removeAll("Z"));
+        System.out.println("list.remove(Z)->"+list.removeAll("Z"));
         System.out.println("list:" + list.toString());
     }
 }

@@ -13,9 +13,9 @@ public class DNode<T> {
     /**
      * 前继指针和后继指针
      */
-    public DNode<T> prev, next;
+    DNode<T> prev, next;
 
-    public DNode(T data, DNode<T> prev, DNode<T> next) {
+    DNode(T data, DNode<T> prev, DNode<T> next) {
         this.data = data;
         this.prev = prev;
         this.next = next;
