@@ -4,9 +4,8 @@ package baseDemo.genericparadigm;
  * 【泛型类】Generic
  */
 public class Generic<T> {
-
     /**
-     * 改方法不是泛型方法，它是泛型类中的方法
+     * 该方法不是泛型方法，它是泛型类中的方法
      */
     private T fun(T t) {
         System.out.println(t);
@@ -20,7 +19,6 @@ public class Generic<T> {
         System.out.println(g);
         return g;
     }
-
 
     public static void main(String[] args) {
         Generic<String> generic = new Generic<>();
@@ -38,5 +36,5 @@ public class Generic<T> {
         // 不是泛型类就不会报错
 //        Integer myint1 = generic1.fun1(number);
     }
-
 }
+
