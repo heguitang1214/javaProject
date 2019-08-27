@@ -1,4 +1,4 @@
-package datastructure.linkedList.MyCollection;
+package algorithm.linkedlist.mycollection;
 
 import java.io.Serializable;
 import java.util.Iterator;

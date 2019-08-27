@@ -1,4 +1,4 @@
-package datastructure.Stack;
+package algorithm.stack;
 
 /**
  * Created by zejian on 2016/11/28.

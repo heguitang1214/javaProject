@@ -1,4 +1,4 @@
-package datastructure.Stack;
+package algorithm.stack;
 
 import java.io.Serializable;
 

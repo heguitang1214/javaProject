@@ -1,7 +1,10 @@
-package datastructure.linkedList.MyCollection;
+package algorithm.linkedlist.mycollection;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by zejian on 2016/11/10.

@@ -1,7 +1,7 @@
 package algorithm.linkedlist.doublelinked;
 
 
-import datastructure.linkedList.ILinkedList;
+import algorithm.linkedlist.ILinkedList;
 
 /**
  * 循环双链表,带空头结点(不含数据),循环链表可以不需要尾部指针
@@ -189,7 +189,7 @@ public class LoopHeadLinkedList<T> implements ILinkedList<T> {
         }
         return old;
     }
-    
+
     @Override
     // TODO: 2019/8/19 删除数据出错
     public boolean removeAll(T data) {

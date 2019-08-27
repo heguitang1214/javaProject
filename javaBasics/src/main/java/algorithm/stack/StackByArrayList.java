@@ -1,4 +1,4 @@
-package datastructure.Stack;//package algorithm.Stack;
+package algorithm.stack;//package algorithm.Stack;
 //
 //import com.zejian.structures.LinkedList.MyCollection.MyArrayList;
 //

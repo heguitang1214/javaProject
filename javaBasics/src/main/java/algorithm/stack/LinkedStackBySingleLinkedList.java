@@ -1,4 +1,4 @@
-package datastructure.Stack;
+package algorithm.stack;
 
 
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Blog : http://blog.csdn.net/javazejian/article/details/53362993 [原文地址,请尊重原创]
  * 链式栈的实现(利用单链表即可)
  */
-public class LinkedStackBySingleLinkedList<T> implements Stack<T> ,Serializable {
+public class LinkedStackBySingleLinkedList<T> implements Stack<T>,Serializable {
 
     private static final long serialVersionUID = 3409158027110650450L;
 

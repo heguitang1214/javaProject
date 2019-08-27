@@ -1,4 +1,4 @@
-package datastructure.linkedList.MyCollection;
+package algorithm.linkedlist.mycollection;
 
 import java.util.ArrayList;
 import java.util.Iterator;

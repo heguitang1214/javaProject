@@ -27,18 +27,30 @@ public class SortLoopHeadLinkedList<T extends Comparable<? extends T>> extends L
         }
 
         DNode<T> p = this.head.next;
-        // 查找插入点
+        // 查找插入点，查找的的p节点的数据大于data，因为cmp.compareTo(p.data) > 0
         while (p != head && cmp.compareTo(p.data) > 0) {
             p = p.next;
         }
+        // p的前驱节点、新添加到节点q、p节点
         DNode<T> q = new DNode<>(data, p.prev, p);
         p.prev.next = q;
-//        p.next.prev = q.prev;
         p.prev = q;
-
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("有序循环双链表(");
+        DNode<T> p = this.head.next;
+        while (p != head) {
+            sb.append(p.data.toString());
+            p = p.next;
+            if (p != head) {
+                sb.append(", ");
+            }
+        }
+        return sb.append(")").toString();
+    }
 
     public static void main(String[] args) {
         SortLoopHeadLinkedList<Integer> list = new SortLoopHeadLinkedList<>();

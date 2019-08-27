@@ -1,8 +1,7 @@
 package datastructure.Queue;
 
 
-
-import datastructure.linkedList.MyCollection.SortMyLinkedList;
+import algorithm.linkedlist.mycollection.SortMyLinkedList;
 
 import java.io.Serializable;
 import java.lang.*;

@@ -1,4 +1,4 @@
-package datastructure.linkedList.MyCollection;
+package algorithm.linkedlist.mycollection;
 
 import java.io.Serializable;
 import java.util.ConcurrentModificationException;
@@ -7,11 +7,9 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
- * Created by zejian on 2016/11/8.
- * Blog : http://blog.csdn.net/javazejian [请尊重原创,转载注明出处]
  * 改良的顺序表类似java集合类ArrayList
  */
-public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
+public class MyArrayList<T> implements Serializable, IList<T>, Iterable<T> {
 
     private static final long serialVersionUID = 8683452581122892389L;
 
@@ -45,22 +43,22 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
         } else if (initialCapacity == 0) {
             this.elementData = (T[]) EMPTY_ELEMENTDATA;
         } else {
-            throw new IllegalArgumentException("Illegal Capacity: "+
-                    initialCapacity);
+            throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
         }
     }
 
-    public MyArrayList() {
+    private MyArrayList() {
         this.elementData = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     /**
      * 扩容的方法
+     *
      * @param capacity
      */
     public void ensureCapacity(int capacity) {
         //如果需要拓展的容量比现在数组的容量还小,则无需扩容
-        if (capacity<size)
+        if (capacity < size)
             return;
 
         modCount++;//记录元素变化
@@ -68,10 +66,9 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
         T[] old = elementData;
         elementData = (T[]) new Object[capacity];
         //复制元素
-        for (int i=0; i<size() ; i++)
-            elementData[i]=old[i];
+        for (int i = 0; i < size(); i++)
+            elementData[i] = old[i];
     }
-
 
 
     @Override
@@ -81,7 +78,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
 
     @Override
     public boolean isEmpty() {
-        return size()==0;
+        return size() == 0;
     }
 
     /**
@@ -111,34 +108,35 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
         //检测下标
         rangeCheck(index);
 
-        T old=elementData[index];
-        elementData[index]=data;
+        T old = elementData[index];
+        elementData[index] = data;
         return old;
     }
 
     @Override
     public boolean add(T data) {
-        add(size(),data);
+        add(size(), data);
         return true;
     }
 
     /**
      * 添加
      * Blog : http://blog.csdn.net/javazejian
+     *
      * @param index
      * @param data
      */
     @Override
     public void add(int index, T data) {
         //判断容量是否充足
-        if(elementData.length==size())
-            ensureCapacity(size()*2+1);//扩容
+        if (elementData.length == size())
+            ensureCapacity(size() * 2 + 1);//扩容
         //根据index找到需要插入的位置
-        for (int i=size; i>index; i--)
-            elementData[i]=elementData[i-1];
+        for (int i = size; i > index; i--)
+            elementData[i] = elementData[i - 1];
 
         //赋值
-        elementData[index]=data;
+        elementData[index] = data;
         size++;
         //记录变化
         modCount++;
@@ -147,6 +145,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
     /**
      * 根据data查询下标
      * Blog : http://blog.csdn.net/javazejian
+     *
      * @param data
      * @return
      */
@@ -155,7 +154,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
         if (data == null) {
             //查找null的下标
             for (int i = 0; i < size; i++)
-                if (elementData[i]==null)
+                if (elementData[i] == null)
                     return i;
         } else {
             //查找有数据的下标
@@ -169,6 +168,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
     /**
      * 根据data查找最后一个的index
      * Blog : http://blog.csdn.net/javazejian
+     *
      * @param data
      * @return
      */
@@ -176,11 +176,11 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
     public int lastIndexOf(T data) {
         //倒序查找即可
         if (data == null) {
-            for (int i = size-1; i >= 0; i--)
-                if (elementData[i]==null)
+            for (int i = size - 1; i >= 0; i--)
+                if (elementData[i] == null)
                     return i;
         } else {
-            for (int i = size-1; i >= 0; i--)
+            for (int i = size - 1; i >= 0; i--)
                 if (data.equals(elementData[i]))
                     return i;
         }
@@ -204,6 +204,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
     /**
      * 根据下标移除元素
      * Blog : http://blog.csdn.net/javazejian
+     *
      * @param index
      * @return
      */
@@ -215,8 +216,8 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
 
         T oldValue = elementData[index];
 
-        for (int i=index;i<size()-1;i++){
-            elementData[i]=elementData[i+1];
+        for (int i = index; i < size() - 1; i++) {
+            elementData[i] = elementData[i + 1];
         }
 
         elementData[--size] = null; // clear to let GC do its work
@@ -227,11 +228,12 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
 
     /**
      * 检测下标
+     *
      * @param index
      */
     private void rangeCheck(int index) {
-        if (index<0||index >= size)
-            throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
 
@@ -243,20 +245,21 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
     /**
      * 提供从指定index开始遍历的迭代器
      * Blog : http://blog.csdn.net/javazejian
+     *
      * @param index
      * @return
      */
     public ListIterator<T> listIterator(int index) {
         if (index < 0 || index > size)
-            throw new IndexOutOfBoundsException("Index: "+index);
+            throw new IndexOutOfBoundsException("Index: " + index);
         return new ListItr(index);
     }
-
 
 
     /**
      * 提供从0开始遍历的迭代器
      * Blog : http://blog.csdn.net/javazejian
+     *
      * @return
      */
     public ListIterator<T> listIterator() {
@@ -265,6 +268,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
 
     /**
      * 返回迭代器
+     *
      * @return
      */
     @Override
@@ -295,6 +299,7 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
 
         /**
          * 先判断是否还有下一个元素
+         *
          * @return
          */
         public boolean hasNext() {
@@ -418,39 +423,38 @@ public class MyArrayList<T>  implements Serializable,IList<T>,Iterable<T>{
     }
 
 
+    public static void main(String[] args) {
+        MyArrayList<Integer> myArrayList = new MyArrayList<>();
+        myArrayList.add(2);
+        myArrayList.add(10);
+        myArrayList.add(1);
+        myArrayList.add(9);
 
-public static void main(String[] args){
-   MyArrayList<Integer> myArrayList=new MyArrayList<>();
-    myArrayList.add(2);
-    myArrayList.add(10);
-    myArrayList.add(1);
-    myArrayList.add(9);
+        print(myArrayList);
+        System.out.println("-------------");
+        myArrayList.remove(2);
+        print(myArrayList);
+        System.out.println("-------------");
+        System.out.println("index-->" + myArrayList.indexOf(10));
+        myArrayList.set(0, 0);
+        print(myArrayList);
 
-    print(myArrayList);
-    System.out.println("-------------");
-    myArrayList.remove(2);
-    print(myArrayList);
-    System.out.println("-------------");
-    System.out.println("index-->"+myArrayList.indexOf(10));
-    myArrayList.set(0,0);
-    print(myArrayList);
+        System.out.println("-------------iterator--------------");
+        Iterator iterator = myArrayList.iterator();
+        while (iterator.hasNext()) {
+            System.out.println("iterator.next-->" + iterator.next());
+        }
 
-    System.out.println("-------------iterator--------------");
-    Iterator iterator=myArrayList.iterator();
-    while (iterator.hasNext()){
-        System.out.println("iterator.next-->"+iterator.next());
+        System.out.println("-------------foreach--------------");
+        for (Integer data : myArrayList) {
+            System.out.println("data-->" + data);
+        }
+
     }
 
-    System.out.println("-------------foreach--------------");
-    for(Integer data : myArrayList){
-        System.out.println("data-->"+data);
-    }
-    
-}
-
-    public static void print(MyArrayList myArrayList){
-        for (int i=0;i<myArrayList.size();i++) {
-            System.out.println("i->"+myArrayList.get(i));
+    public static void print(MyArrayList myArrayList) {
+        for (int i = 0; i < myArrayList.size(); i++) {
+            System.out.println("i->" + myArrayList.get(i));
         }
     }
 

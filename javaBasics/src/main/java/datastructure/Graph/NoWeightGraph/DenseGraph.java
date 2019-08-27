@@ -1,7 +1,7 @@
 package datastructure.Graph.NoWeightGraph;
 
 
-import datastructure.linkedList.MyCollection.MylinkeList;
+import algorithm.linkedlist.mycollection.MylinkeList;
 
 /**
  * Created by zejian on 2018/1/20.

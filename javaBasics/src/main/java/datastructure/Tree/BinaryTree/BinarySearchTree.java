@@ -1,17 +1,18 @@
 package datastructure.Tree.BinaryTree;
 
+import algorithm.stack.LinkedStack;
 import datastructure.Queue.LinkedQueue;
-import datastructure.Stack.LinkedStack;
+
 import java.util.*;
 
 /**
  * 二叉树的实现操作
- *      -树都具备递归的结构，它们都拥有着一致的原子结构，这也就是为什么树可以使用递归定义的原因，
- *      即使是一个十分复杂的树，我们也可以简化为原子的结构的求解过程，毕竟它们本质上是同类问题。
- *      -二叉树的存储结构主要采用的是链式存储结构，顺序存储结构仅适用于完全二叉树或满二叉树.
- *      采用二叉链表存储结构，每个结点只存储了到其孩子结点的单向关系，而没有存储到父结点的关系，
- *      这样的话，每次要获取父结点时将消耗较多的时间，因为需要从root根结点开始查找，
- *      花费的时间是遍历部分二叉树的时间，而且与该结点的位置有关。
+ * -树都具备递归的结构，它们都拥有着一致的原子结构，这也就是为什么树可以使用递归定义的原因，
+ * 即使是一个十分复杂的树，我们也可以简化为原子的结构的求解过程，毕竟它们本质上是同类问题。
+ * -二叉树的存储结构主要采用的是链式存储结构，顺序存储结构仅适用于完全二叉树或满二叉树.
+ * 采用二叉链表存储结构，每个结点只存储了到其孩子结点的单向关系，而没有存储到父结点的关系，
+ * 这样的话，每次要获取父结点时将消耗较多的时间，因为需要从root根结点开始查找，
+ * 花费的时间是遍历部分二叉树的时间，而且与该结点的位置有关。
  */
 public class BinarySearchTree<T extends Comparable> implements Tree<T> {
 
@@ -332,6 +333,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         return list;
     }
 //=================================================================================
+
     /**
      * 根据先根和中根遍历算法构造二叉树
      *
@@ -453,7 +455,6 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
     }
 
 
-
 /**=================================非递归实现先序/中序/后序遍历(开始)=============================================**/
     /**
      * 非递归的先序遍历
@@ -491,13 +492,13 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         //构建用于存放结点的栈
         LinkedStack<BinaryNode<T>> stack = new LinkedStack<>();
         BinaryNode<T> node = this.root;
-        while (node != null || !stack.isEmpty()){
+        while (node != null || !stack.isEmpty()) {
             //左子树全部入栈
-            while(node != null){
+            while (node != null) {
                 stack.push(node);
                 node = node.left;
             }
-            if (!stack.isEmpty()){
+            if (!stack.isEmpty()) {
                 node = stack.pop();//弹出当前节点
                 result.add(node.data);
                 node = node.right;//访问当前节点的右节点
@@ -508,7 +509,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
 
     /**
      * 非递归后根遍历
-     *  链表记录访问路径,利用树来判断是否进行入栈和出栈的操作
+     * 链表记录访问路径,利用树来判断是否进行入栈和出栈的操作
      */
     public List<T> postOrderTraverse() {
         List<T> result = new ArrayList<>();
@@ -517,25 +518,25 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         //当前节点
         BinaryNode<T> currentNode = this.root;
         BinaryNode<T> prev = this.root;
-        while (currentNode != null || !stack.isEmpty()){
+        while (currentNode != null || !stack.isEmpty()) {
             //把左子树加入栈中,直到叶子结点为止
-            while (currentNode != null){
+            while (currentNode != null) {
                 stack.push(currentNode);
                 currentNode = currentNode.left;
             }
-            if (!stack.isEmpty()){
+            if (!stack.isEmpty()) {
                 // 获取当前节点的右节点:获取的是栈顶的右子节点的指向,如果为空,就表示可以进行出栈操作
                 //如果被访问过也可以进行出栈操作
                 BinaryNode<T> temp = stack.peek().right;
                 //没有右子节点  因为是同一节点,可直接比较地址值
-                if (temp == null || temp == prev){//没有右子节点||右子节点已被访问过
+                if (temp == null || temp == prev) {//没有右子节点||右子节点已被访问过
                     currentNode = stack.pop();//记录出栈的元素
                     result.add(currentNode.data);
                     //记录已访问过的结点,判断是否访问过,因为置空只是对链表的操作,并不是对树节点的操作,树的原子结构就是数据+左右节点
                     prev = currentNode;
                     //置空当前栈顶的结点,让栈中的数据继续出栈
                     currentNode = null;
-                }else {//有右子节点
+                } else {//有右子节点
                     //将右子节点赋值给当前节点,然后继续去循环查找
                     currentNode = temp;
                 }
@@ -547,7 +548,9 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
 /**=================================非递归实现先序/中序/后序遍历(结束)=============================================**/
 
 
-/**=================================非递归删除(开始)=============================================**/
+    /**
+     * =================================非递归删除(开始)=============================================
+     **/
     //非递归删除
     public boolean removeUnrecure1(T data) {
         if (data == null) {
