@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 /**
  * 冒泡排序
+ * 优化1：判断元素是否交换过？整个一轮排序，没有一个元素交换，那么这个数组已然有序。
+ * 优化2：元素存在交换过，但是部分存在有序区间，就是对数列【无序数列的边界】的判定。
+ * 》》》鸡尾酒排序
  *
  * @author Tang
  */
@@ -52,9 +55,8 @@ public class BubbleSort {
             // j < size - i - 1 是因为第i轮的元素个数n(size - i)个元素只需要对比n-1次
             for (int j = 0; j < sortBorder; j++) {
                 // 交换
-                int temp = 0;
                 if (arr[j] > arr[j + 1]) {
-                    temp = arr[j];
+                    int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                     // 因为有元素交换，所以不是有序的，标记变为false
