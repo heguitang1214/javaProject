@@ -1,26 +1,23 @@
 package algorithm.stack;
 
-
-
 import algorithm.linkedlist.single.SingleLinkedList;
 
 import java.io.Serializable;
 
 
 /**
- * Created by zejian on 2016/11/27.
- * Blog : http://blog.csdn.net/javazejian/article/details/53362993 [原文地址,请尊重原创]
- * 链式栈的实现(利用单链表即可)
+ * 链式栈的实现【借助单链表实现】
+ *
+ * @author Tang
  */
-public class LinkedStackBySingleLinkedList<T> implements Stack<T>,Serializable {
+public class LinkedStackBySingleLinkedList<T> implements Stack<T>, Serializable {
 
     private static final long serialVersionUID = 3409158027110650450L;
 
-
     private SingleLinkedList<T> linkedList;
 
-    public LinkedStackBySingleLinkedList(){
-        linkedList=new SingleLinkedList<>();
+    public LinkedStackBySingleLinkedList() {
+        linkedList = new SingleLinkedList<>();
     }
 
 
@@ -31,7 +28,8 @@ public class LinkedStackBySingleLinkedList<T> implements Stack<T>,Serializable {
 
     /**
      * 栈顶插入(单链表尾部)
-     * @param data
+     *
+     * @param data 数据
      */
     @Override
     public void push(T data) {
@@ -40,23 +38,42 @@ public class LinkedStackBySingleLinkedList<T> implements Stack<T>,Serializable {
 
     /**
      * 获取元素,不删除
-     * @return
+     *
+     * @return 返回栈顶数据
      */
     @Override
     public T peek() {
-        if(isEmpty())
-            throw new EmptyStackException("Stack empty");
+        if (isEmpty()) {
+            return null;
+//            throw new EmptyStackException("Stack empty");
+        }
         return linkedList.get(0);
     }
 
     /**
      * 栈顶移除
-     * @return
+     *
+     * @return 元素是否移除成功
      */
     @Override
     public T pop() {
-        if(isEmpty())
+        if (isEmpty()) {
             throw new EmptyStackException("Stack empty");
+        }
+        // 从头获取数据,数据就是先进先出
         return linkedList.remove(0);
     }
+
+
+    public static void main(String[] args) {
+        LinkedStackBySingleLinkedList<String> linkedList = new LinkedStackBySingleLinkedList<>();
+        linkedList.push("A");
+        linkedList.push("B");
+        linkedList.push("C");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("sl.pop->" + linkedList.pop());
+        }
+        System.out.println(linkedList.peek());
+    }
+
 }

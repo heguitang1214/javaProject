@@ -1,8 +1,7 @@
 package algorithm.stack;
 
 /**
- * Created by zejian on 2016/11/27.
- * Blog : http://blog.csdn.net/javazejian [原文地址,请尊重原创]
+ * 自定义栈异常
  */
 public class StackException extends RuntimeException {
     public StackException(String msg) {

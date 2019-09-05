@@ -13,5 +13,40 @@
 #### 循环单链表
     CircularHeadLinkedList：循环单链表
 
-## xxx
+## 栈【stack】
+
+
+
+
+
+## 案例【demo】
+    各种数据结构使用的demo
+    
+### 栈操作案例【stack】
+    CalculateExpression：中缀转后缀,然后计算后缀表达式的值
+    CheckExpression：表达式检测
+
+
+
+
+## 排序【sort】
+### 时间复杂度为n^2【n2】
+
+### 时间复杂度为nlogn【nlogn】
+
+### 时间复杂度为n【n】
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
