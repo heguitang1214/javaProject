@@ -20,7 +20,6 @@ public class InsertionSort {
         if (size <= 1) {
             return;
         }
-
         // 默认第一个元素有序，所以i从 1 开始
         for (int i = 1; i < size; i++) {
             int value = arr[i];
@@ -42,7 +41,7 @@ public class InsertionSort {
 
 
     public static void main(String[] args) {
-        int[] arr = new int[]{2, 5, 1, 9, 4, 7, 3,};
+        int[] arr = new int[]{2, 5, 1, 9, 4, 7, 3};
         insertionSort(arr, arr.length);
         System.out.println(Arrays.toString(arr));
     }
