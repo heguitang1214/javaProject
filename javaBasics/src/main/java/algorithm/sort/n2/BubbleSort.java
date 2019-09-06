@@ -24,8 +24,6 @@ public class BubbleSort {
             return;
         }
         for (int i = 0; i < size; i++) {
-            // 优化1：提前退出冒泡排序的标志位
-            boolean flag = false;
             // j < size - i - 1 是因为第i轮的元素个数n(size - i)个元素只需要对比n-1次
             for (int j = 0; j < size - i - 1; j++) {
                 // 交换
@@ -33,32 +31,33 @@ public class BubbleSort {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
-                    flag = true;
                 }
-            }
-            // 没有数据交换，表示后面的数据已经有序，提前退出大循环
-            if (!flag) {
-                break;
             }
         }
     }
 
-    private static void bubbleSort1(int[] arr) {
-        // 记录最后一次交换的位置
+    /**
+     * 冒泡排序优化
+     * 优化1 + 优化2
+     *
+     * @param array 数组
+     */
+    private static void bubbleSort1(int[] array) {
+        // 优化2：记录最后一次交换的位置
         int lastExchangeIndex = 0;
-        // 无序数列得到边界，每次比较只需要比到这里为止
-        int sortBorder = arr.length - 1;
+        // 优化2：无序数列得到边界，每次比较只需要比到这里为止
+        int sortBorder = array.length - 1;
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
             // 优化1：有序标记，每一轮的初始值都是true
             boolean flag = true;
             // j < size - i - 1 是因为第i轮的元素个数n(size - i)个元素只需要对比n-1次
             for (int j = 0; j < sortBorder; j++) {
                 // 交换
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                     // 因为有元素交换，所以不是有序的，标记变为false
                     flag = false;
                     // 更新为最后一次交换元素的位置
@@ -73,13 +72,20 @@ public class BubbleSort {
         }
     }
 
-    // 鸡尾酒排序
-    private static void sort(int[] array) {
-        int tmp = 0;
+
+    /**
+     * 鸡尾酒排序
+     * 冒泡排序的优化
+     *
+     * @param array 数组
+     */
+    private static void cocktailSort(int[] array) {
+        int tmp;
+        // 最外层控制循环次数
         for (int i = 0; i < array.length / 2; i++) {
             // 有序标记，每一轮的初始值都是true
             boolean isSorted = true;
-            // 奇数轮，从左向右比较和交换
+            // 奇数轮，从左向右比较和交换，最大的在最右边，所以不需要j从0开始比较，直接从i进行比较
             for (int j = i; j < array.length - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     tmp = array[j];
@@ -92,9 +98,10 @@ public class BubbleSort {
             if (isSorted) {
                 break;
             }
-            // 在偶数轮之前，将isSorted重新标记为false
-            isSorted = true;
 
+            // 在偶数轮之前，将isSorted重新标记为true
+            isSorted = true;
+            // 偶数轮，从右往左遍历，最小的在最左边，所以不需要j从0开始比较，直接从i进行比较
             for (int j = array.length - i - 1; j > i; j--) {
                 if (array[j] < array[j - 1]) {
                     tmp = array[j];
@@ -144,20 +151,22 @@ public class BubbleSort {
         System.out.println("交换后的数据为：a=" + a + "，b=" + b);
     }
 
+
     public static void main(String[] args) {
         int[] arr = new int[]{4, 5, 3, 6, 9, 1, 2};
         bubbleSort(arr, arr.length);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("普通冒泡排序：" + Arrays.toString(arr));
 
         int[] arr1 = new int[]{3, 4, 2, 1, 5, 6, 7, 8};
         bubbleSort1(arr1);
-        System.out.println(Arrays.toString(arr1));
-
+        System.out.println("优化后冒泡排序：" + Arrays.toString(arr1));
 
         int[] arr2 = new int[]{2, 3, 4, 5, 6, 7, 8, 1};
-        sort(arr2);
-        System.out.println(Arrays.toString(arr2));
+        cocktailSort(arr2);
+        System.out.println("鸡尾酒排序：" + Arrays.toString(arr2));
 
+
+        System.out.println("=================交换两个数====================");
         int a = 1, b = 2, aa = 3, bb = 4;
         dataExchange(a, b);
         dataExchange(aa, bb);
