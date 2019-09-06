@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 /**
  * 冒泡排序
+ * 优化1：判断元素是否交换过？整个一轮排序，没有一个元素交换，那么这个数组已然有序。
+ * 优化2：元素存在交换过，但是部分存在有序区间，就是对数列【无序数列的边界】的判定。
+ * 》》》鸡尾酒排序
  *
  * @author Tang
  */
@@ -21,7 +24,7 @@ public class BubbleSort {
             return;
         }
         for (int i = 0; i < size; i++) {
-            // 提前退出冒泡排序的标志位
+            // 优化1：提前退出冒泡排序的标志位
             boolean flag = false;
             // j < size - i - 1 是因为第i轮的元素个数n(size - i)个元素只需要对比n-1次
             for (int j = 0; j < size - i - 1; j++) {
@@ -33,8 +36,75 @@ public class BubbleSort {
                     flag = true;
                 }
             }
-            // 没有数据交换，表示后面的数据已经有序，提前退出
+            // 没有数据交换，表示后面的数据已经有序，提前退出大循环
             if (!flag) {
+                break;
+            }
+        }
+    }
+
+    private static void bubbleSort1(int[] arr) {
+        // 记录最后一次交换的位置
+        int lastExchangeIndex = 0;
+        // 无序数列得到边界，每次比较只需要比到这里为止
+        int sortBorder = arr.length - 1;
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            // 优化1：有序标记，每一轮的初始值都是true
+            boolean flag = true;
+            // j < size - i - 1 是因为第i轮的元素个数n(size - i)个元素只需要对比n-1次
+            for (int j = 0; j < sortBorder; j++) {
+                // 交换
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    // 因为有元素交换，所以不是有序的，标记变为false
+                    flag = false;
+                    // 更新为最后一次交换元素的位置
+                    lastExchangeIndex = j;
+                }
+            }
+            sortBorder = lastExchangeIndex;
+            // 没有数据交换，表示后面的数据已经有序，提前退出大循环
+            if (flag) {
+                break;
+            }
+        }
+    }
+
+    // 鸡尾酒排序
+    private static void sort(int[] array) {
+        int tmp = 0;
+        for (int i = 0; i < array.length / 2; i++) {
+            // 有序标记，每一轮的初始值都是true
+            boolean isSorted = true;
+            // 奇数轮，从左向右比较和交换
+            for (int j = i; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
+                    // 有元素交换，所以不是有序的，标记变为false
+                    isSorted = false;
+                }
+            }
+            if (isSorted) {
+                break;
+            }
+            // 在偶数轮之前，将isSorted重新标记为false
+            isSorted = true;
+
+            for (int j = array.length - i - 1; j > i; j--) {
+                if (array[j] < array[j - 1]) {
+                    tmp = array[j];
+                    array[j] = array[j - 1];
+                    array[j - 1] = tmp;
+                    // 因为有元素交换，所以不是有序的，标记变为false
+                    isSorted = false;
+                }
+            }
+            if (isSorted) {
                 break;
             }
         }
@@ -79,6 +149,14 @@ public class BubbleSort {
         bubbleSort(arr, arr.length);
         System.out.println(Arrays.toString(arr));
 
+        int[] arr1 = new int[]{3, 4, 2, 1, 5, 6, 7, 8};
+        bubbleSort1(arr1);
+        System.out.println(Arrays.toString(arr1));
+
+
+        int[] arr2 = new int[]{2, 3, 4, 5, 6, 7, 8, 1};
+        sort(arr2);
+        System.out.println(Arrays.toString(arr2));
 
         int a = 1, b = 2, aa = 3, bb = 4;
         dataExchange(a, b);
