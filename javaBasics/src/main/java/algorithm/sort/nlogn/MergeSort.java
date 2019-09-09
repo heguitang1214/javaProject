@@ -46,7 +46,7 @@ public class MergeSort {
      *
      * @param array 原数组
      * @param left  数组左下标
-     * @param mid   数组中间下表
+     * @param mid   数组中间下标
      * @param right 数组右下标
      * @param temp  临时数组空间
      */
