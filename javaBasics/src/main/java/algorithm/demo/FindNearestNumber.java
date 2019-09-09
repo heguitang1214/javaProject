@@ -10,7 +10,12 @@ import java.util.Arrays;
  */
 public class FindNearestNumber {
 
-
+    /**
+     * 找全排序的下一个数：【字典序算法】
+     *
+     * @param numbers 数组
+     * @return 全排列的下一位数
+     */
     private static int[] findNearestNumber(int[] numbers) {
         //1.从后向前查看逆序区域，找到逆序区域的前一位，也就是数字置换的边界
         int index = findTransferPoint(numbers);
