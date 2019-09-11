@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class ShellSort {
 
     /**
-     * 希尔排序
+     * 希尔排序：实现方式一
      *
      * @param array 原数组
      * @return 排序后的数组
@@ -26,6 +26,8 @@ public class ShellSort {
                 // 临时变量，保存【希尔增量】后面的数据
                 temp = array[i];
                 int preIndex = i - gap;
+
+                // 插入排序
                 while (preIndex >= 0 && array[preIndex] > temp) {
                     // 如果前面的元素大于后面的元素【array[preIndex] > temp】，交换数据
                     // array[i] = array[preIndex]
@@ -34,6 +36,7 @@ public class ShellSort {
                     preIndex = preIndex - gap;
                 }
                 array[preIndex + gap] = temp;
+
             }
             gap = gap / 2;
         }
@@ -41,7 +44,7 @@ public class ShellSort {
     }
 
     /**
-     * 希尔排序
+     * 希尔排序：实现方式二
      *
      * @param array 原数组
      */
@@ -52,13 +55,13 @@ public class ShellSort {
         while (d > 1) {
             //使用希尔增量的方式，即每次折半
             d = d / 2;
-            // 外层循环：[0,d -1]
+            // 外层循环：[0 , d-1]
             for (int x = 0; x < d; x++) {
                 // 内层循环：[d,array.length]
                 for (int i = x + d; i < array.length; i++) {
                     int temp = array[i];
                     int j;
-                    // 元素分组
+                    // 元素分组，插入排序
                     // [5, 1, 2, 3, 9, 8, 6, 7]，j=0，i=2，d=2
                     // [5, 1, 5, 3, 9, 8, 6, 7]，j=0，i=2，d=2
                     // [2, 1, 5, 3, 9, 8, 6, 7]，j=-2，d=2
