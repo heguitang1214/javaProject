@@ -10,26 +10,8 @@ import java.util.Arrays;
  */
 public class HeapSort {
 
-
     /**
-     * 1.建堆
-     *
-     * @param array 原数组
-     */
-    private static void buildHeap(int[] array) {
-        int length = array.length;
-        if (length <= 1) {
-            return;
-        }
-        // 下标是 n^2+1到 n 的节点是叶子节点，不需要堆化，因为这里仅仅是建堆
-        // (arr.length - 1) / 2 为最后一个叶子节点的父节点，也就是最后一个非叶子节点，依次堆化直到根节点
-        for (int i = (length - 1) / 2; i >= 0; i--) {
-            heapify(array, length - 1, i);
-        }
-    }
-
-    /**
-     * 2. 堆排序
+     * 堆排序
      *
      * @param array 原数组
      */
@@ -51,6 +33,23 @@ public class HeapSort {
     }
 
     /**
+     * 1.建堆
+     *
+     * @param array 原数组
+     */
+    private static void buildHeap(int[] array) {
+        int length = array.length;
+        if (length <= 1) {
+            return;
+        }
+        // 下标是 n^2+1到 n 的节点是叶子节点，不需要堆化，这里自上往下堆化，创建大顶堆
+        // (arr.length - 1) / 2 为最后一个叶子节点的父节点，也就是最后一个非叶子节点，依次堆化直到根节点
+        for (int i = (length - 1) / 2; i >= 0; i--) {
+            heapify(array, length - 1, i);
+        }
+    }
+
+    /**
      * 自上往下堆化(大顶堆)
      *
      * @param array 要堆化的数组
@@ -61,10 +60,12 @@ public class HeapSort {
         while (true) {
             // 最大值位置
             int maxPos = i;
-            if (i * 2 + 1 < count && array[i] < array[i * 2 + 1]) {
+            // 与左子节点（i * 2 + 1）比较，获取最大值位置
+            if (i * 2 + 1 <= count && array[i] < array[i * 2 + 1]) {
                 maxPos = i * 2 + 1;
             }
-            if (i * 2 + 2 < count && array[maxPos] < array[i * 2 + 2]) {
+            // 最大值与右子节点（i * 2 + 2）比较，获取最大值位置
+            if (i * 2 + 2 <= count && array[maxPos] < array[i * 2 + 2]) {
                 maxPos = i * 2 + 2;
             }
             if (maxPos == i) {
@@ -82,9 +83,15 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] c = new int[]{1, 7, 2, 3, 4, 9, 8, 5};
-        heapSort(c);
-        System.out.println(Arrays.toString(c));
+        int[] array = new int[]{1, 7, 2, 3, 4, 9, 8, 5};
+        heapSort(array);
+        System.out.println(Arrays.toString(array));
+
+
+        int[] array1 = new int[]{1, 7, 2, 3, 4, 19, 8, 51};
+        heapSort(array1);
+        System.out.println(Arrays.toString(array1));
+
     }
 
 
