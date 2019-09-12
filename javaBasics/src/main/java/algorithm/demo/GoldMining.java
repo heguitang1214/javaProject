@@ -1,5 +1,7 @@
 package algorithm.demo;
 
+import java.util.Arrays;
+
 /**
  * 求解金矿问题
  * 有一个国家发现了5座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同。
@@ -73,7 +75,10 @@ public class GoldMining {
 
 
     /**
-     * 获得金矿最优收益
+     * 获得金矿最优收益：保存前一行的金矿数据，当前最优收益只依赖于前一行的数据（第一行除外）
+     * 3个金矿8个人的结果，就是来自于2个金矿8工人和2个金矿5工人，max(500,500 + 200) = 700
+     * 200 = 第三个金矿挖获得的金矿储量
+     * <p>
      * 时间复杂度为：O(nw)
      *
      * @param w 工人数量
@@ -84,20 +89,27 @@ public class GoldMining {
         // 创建当前结果
         int[] results = new int[w + 1];
         // 填充一维数组
+        // 外层循环遍历金矿，因为这里的i从1开始，所以后面取值的时候，数组下标就为：i-1
         for (int i = 1; i <= g.length; i++) {
+            // 内层循环遍历工人数量，倒叙遍历工人数量，当只有一个金矿的时候，
+            // 无论多少个工人，开采的金矿储量也只有一个金矿的储量。
+            // 金矿数量减少1，有挖和不挖两种选择，工人数在减少
             for (int j = w; j >= 1; j--) {
+                // 工人数量大于当前金矿开采所需工人数量
+                int resultj = 0, resultjp = 0;
                 if (j >= p[i - 1]) {
-                    results[j] = Math.max(
-                            results[j],
-                            results[j - p[i - 1]] + g[i - 1]);
+                    resultj = results[j];
+                    resultjp = results[j - p[i - 1]] + g[i - 1];
+                    results[j] = Math.max(resultj, resultjp);
                 }
+                System.out.println("当前金矿数量i=" + i + " ,resultj=" + resultj + " ,resultjp=" + resultjp +
+                        " ,results=" + Arrays.toString(results));
             }
         }
 
         // 返回最后1个格子的值
         return results[w];
     }
-
 
     public static void main(String[] args) {
         // 工人数量
