@@ -1,5 +1,6 @@
 package algorithm.search;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -35,7 +36,9 @@ public class SkipList {
      * @param value 节点数据
      */
     private void insert(int value) {
+        // 获取当前节点的索引层数
         int level = randomLevel();
+        System.out.println("当前数据：" + value + " 的索引层数为：" + level);
 
         Node newNode = new Node();
         newNode.data = value;
@@ -104,9 +107,6 @@ public class SkipList {
     }
 
 
-
-
-
     /**
      * 跳跃表节点：没有引入next指针
      */
@@ -133,6 +133,9 @@ public class SkipList {
             sb.append(data);
             sb.append("; levels: ");
             sb.append(maxLevel);
+            sb.append("; ");
+//            sb.append("[长度：").append(forwards.length).append("]");
+//            sb.append(Arrays.toString(forwards));
             sb.append(" }");
             return sb.toString();
         }
@@ -141,8 +144,22 @@ public class SkipList {
 
     public static void main(String[] args) {
         SkipList skipList = new SkipList();
+        skipList.insert(10);
+        skipList.insert(12);
+        skipList.insert(15);
+        skipList.insert(18);
+        skipList.insert(20);
+        skipList.insert(23);
+
+        Node node = skipList.find(15);
+        System.out.println(node);
+        System.out.println(Arrays.toString(node.forwards));
 
 
 
+        System.out.println(skipList.find(17));
+        System.out.println(skipList.find(18));
+        System.out.println(skipList.find(20));
+        System.out.println(skipList.find(23));
     }
 }
