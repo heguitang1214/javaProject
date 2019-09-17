@@ -7,12 +7,12 @@ package designPatterns.singleCase;
  */
 public class HungryChinese {
 
-    private static final HungryChinese single = new HungryChinese();
+    private static final HungryChinese SINGLE = new HungryChinese();
 
     private HungryChinese(){}
 
     public static HungryChinese getInstance(){
-        return single;
+        return SINGLE;
     }
 
 }

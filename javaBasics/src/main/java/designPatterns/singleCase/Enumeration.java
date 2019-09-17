@@ -7,8 +7,11 @@ package designPatterns.singleCase;
  * 所以在实际项目开发中，很少见人这么写过。
  */
 public enum Enumeration {
+    /**
+     * 对象
+     */
     INSTANCE;
-    public void whateverMethod() {
-
-    }
+//    public void whateverMethod() {
+//
+//    }
 }
