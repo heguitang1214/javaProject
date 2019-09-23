@@ -13,7 +13,7 @@ import java.util.Objects;
 public class AcAutoMataV2 {
     private ACNode root;
 
-    public AcAutoMataV2() {
+    private AcAutoMataV2() {
         this.root = new ACNode("/");
     }
 
@@ -32,6 +32,10 @@ public class AcAutoMataV2 {
         node.length = pattern.length();
     }
 
+
+    /**
+     * 构建失败指针
+     */
     private void buildFailurePointer() {
         ACNode root = this.root;
         LinkedList<ACNode> queue = new LinkedList<>();
@@ -66,6 +70,12 @@ public class AcAutoMataV2 {
         }
     }
 
+    /**
+     * 匹配字符串
+     *
+     * @param text 文本
+     * @return 是否匹配
+     */
     private Boolean match(String text) {
         ACNode root = this.root;
         ACNode p = root;
@@ -84,17 +94,25 @@ public class AcAutoMataV2 {
 
             ACNode tmp = p;
             while (tmp != root) {
-                if (tmp.isEndingChar == true) {
+                // tmp.isEndingChar == true
+                if (tmp.isEndingChar) {
+                    // 可修改成字符串的替换
                     System.out.println("Start from " + (i - p.length + 1));
                     return true;
                 }
                 tmp = tmp.fail;
             }
         }
-
         return false;
     }
 
+    /**
+     * 多模式串的匹配
+     *
+     * @param text     主串
+     * @param patterns 模式串
+     * @return 是否存在模式串的匹配
+     */
     private static boolean match(String text, String[] patterns) {
         AcAutoMataV2 automata = new AcAutoMataV2();
         for (String pattern : patterns) {
@@ -109,13 +127,27 @@ public class AcAutoMataV2 {
      * AC自动机节点
      */
     private static class ACNode {
+
         private String data;
+
         private Map<String, ACNode> children;
+
+        /**
+         * 结尾字符为 true
+         */
         private Boolean isEndingChar;
+
+        /**
+         * 当 isEndingChar=true 时，记录模式串长度
+         */
         private Integer length;
+
+        /**
+         * 失败指针:相当于 KMP 中的失效函数 next 数组
+         */
         private ACNode fail;
 
-        public ACNode(String data) {
+        ACNode(String data) {
             this.data = data;
             this.children = new HashMap<>();
             this.isEndingChar = false;
@@ -130,9 +162,11 @@ public class AcAutoMataV2 {
         System.out.println(match(text, patterns));
 
         String[] patterns2 = {"Fxtec Pro1", "谷歌Pixel"};
-
         String text2 = "一家总部位于伦敦的公司Fxtex在MWC上就推出了一款名为Fxtec Pro1的手机，该机最大的亮点就是采用了侧滑式全键盘设计。DxOMark年度总榜发布 华为P20 Pro/谷歌Pixel 3争冠";
         System.out.println(match(text2, patterns2));
+
+        String[] patterns3 = {"大中华"};
+        System.out.println(match(text2, patterns3));
     }
 
 }
