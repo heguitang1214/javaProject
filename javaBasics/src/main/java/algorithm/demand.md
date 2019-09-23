@@ -20,7 +20,17 @@
 
 
 ## 案例【demo】
-    各种数据结构使用的demo
+    BigNumberSum：如何实现大整数相加
+    FindLostNum：寻找缺失的整数
+    FindNearestNumber：寻找全排序的下一个数
+    FullSort：数据全排列
+    GreatestCommonDivisor：如何求最大公约数
+    MaxSortedDistance：无序数组排序后的最大相邻差
+    PowerOf2：判断一个数是否是2的整数次幂
+    RemoveKDigits：删除K个数字后的最小值
+    ReverseLinkedList：链表逆序
+    StackQueue：如何用栈实现队列
+    
     
 ### 栈操作案例【stack】
     CalculateExpression：中缀转后缀,然后计算后缀表达式的值
