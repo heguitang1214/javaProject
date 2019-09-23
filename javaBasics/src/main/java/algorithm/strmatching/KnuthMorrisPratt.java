@@ -56,6 +56,8 @@ public class KnuthMorrisPratt {
         int k = -1;
         // 从前往后循环模式串
         for (int i = 1; i < m; ++i) {
+            // 循环判断b[k + 1] 与 b[i]是否相等，相等k++，、
+            // 否则，获取已匹配前缀子串的结尾字符下标next[k]，继续比较，查看上一个字符结尾的匹配
             while (k != -1 && b[k + 1] != b[i]) {
                 //4. 遇到不能匹配的数据， 例如：b[2] != b[5]
                 k = next[k];
@@ -85,8 +87,11 @@ public class KnuthMorrisPratt {
         int index2 = kmp(c, c.length, d, d.length);
         System.out.println(index2);
 
-//        char[] d = {'a', 'b', 'a', 'b', 'a', 'c', 'd'};
-//        System.out.println(Arrays.toString(getNexts(d, d.length)));
+//        char[] e = {'a', 'b', 'a', 'b', 'a', 'c', 'd'};
+//        System.out.println(Arrays.toString(getNexts(e, e.length)));
+
+//        char[] e1 = {'a', 'b', 'a', 'b', 'a', 'c', 'd'};
+//        System.out.println(Arrays.toString(getNexts(e1, e1.length)));
 
     }
 
