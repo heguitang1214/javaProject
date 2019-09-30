@@ -60,6 +60,7 @@ public class KnuthMorrisPratt {
             // 否则，获取已匹配前缀子串的结尾字符下标next[k]，继续比较，查看上一个字符结尾的匹配
             while (k != -1 && b[k + 1] != b[i]) {
                 //4. 遇到不能匹配的数据， 例如：b[2] != b[5]
+                // 动态规划思想：当前的值可以根据前一个值计算
                 k = next[k];
             }
             // 1.有字符匹配上，例如 b[0] = b[3]
@@ -90,8 +91,8 @@ public class KnuthMorrisPratt {
 //        char[] e = {'a', 'b', 'a', 'b', 'a', 'c', 'd'};
 //        System.out.println(Arrays.toString(getNexts(e, e.length)));
 
-//        char[] e1 = {'a', 'b', 'a', 'b', 'a', 'c', 'd'};
-//        System.out.println(Arrays.toString(getNexts(e1, e1.length)));
+        char[] e1 = {'a', 'b', 'a', 'b', 'a', 'a'};
+        System.out.println(Arrays.toString(getNexts(e1, e1.length)));
 
     }
 

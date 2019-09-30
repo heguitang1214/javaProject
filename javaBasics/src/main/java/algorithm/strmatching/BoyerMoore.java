@@ -174,7 +174,7 @@ public class BoyerMoore {
      */
     private static int moveByGS(int j, int m, int[] suffix, boolean[] prefix) {
         // 好后缀长度
-        int k = m - 1 - j;
+        int  k = m - 1 - j;
         // suffix 数组中有匹配的子串：在模式串中，查找跟好后缀匹配的另一个子串
         if (suffix[k] != -1) {
             return j - suffix[k] + 1;

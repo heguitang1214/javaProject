@@ -68,6 +68,9 @@ public class Pattern {
         // * 匹配任意个字符
         if (pattern[pj] == '*') {
             for (int k = 0; k <= tlen - ti; ++k) {
+                System.out.println("匹配到*，当前k = " + k + "，ti + k = " + ti + k + "，pj = " + pj);
+                // pj代表的是*，依次匹配文本串的当前下标、当前下标 + 1、当前下标 + 2...
+                // pj + 1代表的是*的下一位，遇到pattern[pj] == text[ti]的时候，这个*的匹配，就要跳出
                 rmatch(ti + k, pj + 1, text, tlen);
             }
         } else if (pattern[pj] == '?') {
@@ -83,8 +86,13 @@ public class Pattern {
     public static void main(String[] args) {
         char[] pattern = {'s', '*', 't'};
         Pattern pattern1 = new Pattern(pattern, pattern.length);
-        String text = "sxxxt";
+        String text = "sxxxxt";
         pattern1.match(text.toCharArray(), text.length());
+        System.out.println("是否匹配：" + pattern1.matched);
+
+
+        String text1 = "sxxxxt1";
+        pattern1.match(text1.toCharArray(), text1.length());
         System.out.println("是否匹配：" + pattern1.matched);
 
     }
