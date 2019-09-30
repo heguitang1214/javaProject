@@ -43,6 +43,7 @@ public class AcAutoMata {
         while (!queue.isEmpty()) {
             AcNode p = queue.remove();
             for (int i = 0; i < 26; ++i) {
+                // 获取队列中的 p节点的子节点 pc
                 AcNode pc = p.children[i];
                 if (pc == null) {
                     continue;
@@ -50,19 +51,25 @@ public class AcAutoMata {
                 if (p == root) {
                     pc.fail = root;
                 } else {
+                    // 获取父结点 p的失败指针q，来构建子节点pc的失败指针
                     AcNode q = p.fail;
+                    // 父结点的失败指针不为空
                     while (q != null) {
+                        // 如果p的子节点pc等于q的子节点qc，即：qc不为空
                         AcNode qc = q.children[pc.data - 'a'];
                         if (qc != null) {
+                            // pc的失败指针就为q的子节点qc
                             pc.fail = qc;
                             break;
                         }
+                        // 更新q节点，继续循环，寻找q的最长匹配后缀子串对应的模式串的前缀的最后一个节点
                         q = q.fail;
                     }
                     if (q == null) {
                         pc.fail = root;
                     }
                 }
+                // 将子节点放入队列中
                 queue.add(pc);
             }
         }
@@ -79,20 +86,27 @@ public class AcAutoMata {
         for (int i = 0; i < n; ++i) {
             int idx = text[i] - 'a';
             while (p.children[idx] == null && p != root) {
+                // p.children[idx] == null，主串中的当前字符不能匹配
                 // 失败指针发挥作用的地方
                 p = p.fail;
             }
+
+            // 字符匹配上，修改p指针
             p = p.children[idx];
             // 如果没有匹配的，从 root 开始重新匹配
             if (p == null) {
                 p = root;
             }
+
+            // tmp是子节点
             AcNode tmp = p;
             // 打印出可以匹配的模式串
+            // 检查当前的元素p，是否存在模式的叶子节点也是p。例如：p是abcd中的c，还存在一个模式串c
             while (tmp != root) {
-                if (tmp.isEndingChar == true) {
+                // tmp.isEndingChar == true
+                if (tmp.isEndingChar) {
                     int pos = i - tmp.length + 1;
-                    System.out.println(" 匹配起始下标 " + pos + "; 长度 " + tmp.length);
+                    System.out.println(Arrays.toString(text) + " 匹配起始下标 " + pos + "; 长度 " + tmp.length);
                 }
                 tmp = tmp.fail;
             }
@@ -132,23 +146,23 @@ public class AcAutoMata {
     }
 
     public static void main(String[] args) {
-        char[] chars = {'c', 'a', 'o'};
+        char[] chars = "cao".toCharArray();
+        char[] chars1 = "kao".toCharArray();
         AcAutoMata acAutoMata = new AcAutoMata();
         acAutoMata.insert(chars);
+        acAutoMata.insert(chars1);
 
         acAutoMata.buildFailurePointer();
 
         System.out.println("===================================开始匹配========================");
-        char[] chars1 = {'e','f'};
-        acAutoMata.match(chars1);
+        String str1 = "ef";
+        acAutoMata.match(str1.toCharArray());
 
+        String str2 = "afcao";
+        acAutoMata.match(str2.toCharArray());
 
-        char[] chars2 = {'a','f'};
-        acAutoMata.match(chars2);
-        char[] chars3 = {'c','f'};
-        acAutoMata.match(chars3);
-        char[] chars4 = {'a','o'};
-        acAutoMata.match(chars4);
+        String str3 = "nkao";
+        acAutoMata.match(str3.toCharArray());
     }
 
 }

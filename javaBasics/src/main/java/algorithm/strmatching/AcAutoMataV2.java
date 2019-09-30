@@ -161,7 +161,7 @@ public class AcAutoMataV2 {
         String text = "soarsoars";
         System.out.println(match(text, patterns));
 
-        String[] patterns2 = {"Fxtec Pro1", "谷歌Pixel"};
+        String[] patterns2 = {"Fxtec Pro1x", "谷歌Pixel"};
         String text2 = "一家总部位于伦敦的公司Fxtex在MWC上就推出了一款名为Fxtec Pro1的手机，该机最大的亮点就是采用了侧滑式全键盘设计。DxOMark年度总榜发布 华为P20 Pro/谷歌Pixel 3争冠";
         System.out.println(match(text2, patterns2));
 
