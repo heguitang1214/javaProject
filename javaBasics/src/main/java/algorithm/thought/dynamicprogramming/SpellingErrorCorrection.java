@@ -131,7 +131,7 @@ public class SpellingErrorCorrection {
      * @param m 字符串数组b的长度
      * @return 最长公共子串长度
      */
-    public static int lcs(char[] a, int n, char[] b, int m) {
+    private static int lcs(char[] a, int n, char[] b, int m) {
         int[][] maxlcs = new int[n][m];
         // 初始化第 0 行：a[0..0] 与 b[0..j] 的 maxlcs
         for (int j = 0; j < m; ++j) {

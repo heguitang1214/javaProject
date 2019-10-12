@@ -211,34 +211,21 @@ public class Knapsack01 {
      *
      * @param weight 物品重量数组
      * @param value  物品价值数组
-     * @param n      物品个数
      * @param w      背包可承载重量
      * @return 最优值
      */
-    // todo 存在问题
-    private static int knapsack4(int[] weight, int[] value, int n, int w) {
-        int[] states = new int[w + 1];
-        // 第一行的数据要特殊处理，可以利用哨兵优化
-        states[0] = 0;
-        if (weight[0] <= w) {
-            states[weight[0]] = value[0];
-        }
-        System.out.println(Arrays.toString(states));
-        // 动态规划，状态转移
-        for (int i = 1; i < n; ++i) {
-            for (int j = w - weight[i]; j >= 0; --j) {
-                if (states[j] > 0) {
-                    int v1 = states[i - 1] + value[i];
-//                    int v = states[j] + value[i];
-                    states[j + weight[i]] = v1;
-//                    states[j + weight[i]] = v;
+    private static int knapsack4(int[] weight, int[] value, int w) {
+        int[] results = new int[w + 1];
+
+        for (int i = 1; i <= weight.length; i++) {
+            for (int j = w; j >= 1; j--) {
+                if (j >= weight[i - 1]) {
+                    results[j] = Math.max(results[j], results[j - weight[i - 1]] + value[i - 1]);
                 }
             }
-            System.out.println(Arrays.toString(states));
         }
-
         // 输出结果
-        return states[w];
+        return results[w];
     }
 
 
@@ -257,7 +244,8 @@ public class Knapsack01 {
         int knapsack3 = knapsack3(weight, value, 5, 9);
         System.out.println("背包能装的最大价值为：knapsack3=" + knapsack3);
 
-        int knapsack4 = knapsack4(weight, value, 5, 9);
+//        int knapsack4 = knapsack4(weight, value, 5, 9);
+        int knapsack4 = knapsack4(weight, value, 9);
         System.out.println("背包能装的最大价值为：knapsack4=" + knapsack4);
     }
 

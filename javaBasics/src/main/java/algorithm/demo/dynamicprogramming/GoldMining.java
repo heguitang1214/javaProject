@@ -79,6 +79,13 @@ public class GoldMining {
      * 3个金矿8个人的结果，就是来自于2个金矿8工人和2个金矿5工人，max(500,500 + 200) = 700
      * 200 = 第三个金矿挖获得的金矿储量
      * <p>
+     * 最优子结构和最终问题的依赖关系：也就是4个金矿的最优选择和5个金矿的最优选择之间，有什么样的关系？
+     * （1）5个金矿的最优选择有两个，挖/不挖
+     * （2）4个金矿的最优选择有两个，挖/不挖
+     * （3）第5个金矿不挖的最优选择是：f(n，w)=f(n-1，w)，也就是第4个金矿的最优选择
+     * （4）第5个金矿不挖的最优选择是：F(n,w) = max(F(n-1,w),  F(n-1,w-p[n-1])+g[n-1]) (n>1, w>=p[n-1])，
+     * 也就是【前4个金矿n个工人的数量】与【前4个金矿n-p[4]工人的数量 + 第5个金矿的挖金数量】的最大值
+     * <p>
      * 时间复杂度为：O(nw)
      *
      * @param w 工人数量
@@ -101,6 +108,7 @@ public class GoldMining {
                     resultj = results[j];
                     resultjp = results[j - p[i - 1]] + g[i - 1];
                     results[j] = Math.max(resultj, resultjp);
+//                    results[j] = Math.max(results[j], results[j - p[i - 1]] + g[i - 1]);
                 }
                 System.out.println("当前金矿数量i=" + i + " ,resultj=" + resultj + " ,resultjp=" + resultjp +
                         " ,results=" + Arrays.toString(results));
