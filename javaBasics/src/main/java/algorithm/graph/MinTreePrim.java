@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author heguitang
  */
-public class Prim {
+public class MinTreePrim {
 
     /**
      * 代表节点之间的距离为无穷大
@@ -20,7 +20,7 @@ public class Prim {
      * 最小生成树
      *
      * @param matrix 图
-     * @return 最小生成树的路径
+     * @return 最小生成树的路径（父结点所在的下标）
      */
     private static int[] prim(int[][] matrix) {
         // 已触达顶点集合

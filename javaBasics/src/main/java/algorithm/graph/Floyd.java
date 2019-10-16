@@ -25,6 +25,8 @@ public class Floyd {
             for (int i = 0; i < matrix.length; i++) {
                 // j：矩阵纵坐标
                 for (int j = 0; j < matrix.length; j++) {
+                    // 当前 K 为中继节点，依次考察每个节点，即【i++，j++】
+                    // ABC为中继节点，考察的就是C，因为中继节点A、AB已经考察，不会在变，即：无后效应
                     if (matrix[i][k] == INF || matrix[k][j] == INF) {
                         continue;
                     }
@@ -34,12 +36,12 @@ public class Floyd {
         }
 
         // 打印floyd最短路径的结果
-        System.out.printf("最短路径矩阵: \n");
+        System.out.print("最短路径矩阵: \n");
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 System.out.printf("%3d  ", matrix[i][j]);
             }
-            System.out.printf("\n");
+            System.out.print("\n");
         }
     }
 
