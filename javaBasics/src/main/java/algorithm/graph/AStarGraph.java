@@ -85,8 +85,8 @@ public class AStarGraph {
                 // 更新 next 的 dist,f
                 if (minVertex.dist + e.w < nextVertex.dist) {
                     nextVertex.dist = minVertex.dist + e.w;
-                    nextVertex.f
-                            = nextVertex.dist + hManhattan(nextVertex, vertexes[t]);
+                    // f(i)=g(i)+h(i)
+                    nextVertex.f = nextVertex.dist + hManhattan(nextVertex, vertexes[t]);
                     predecessor[nextVertex.id] = minVertex.id;
                     if (inqueue[nextVertex.id]) {
                         queue.update(nextVertex);
